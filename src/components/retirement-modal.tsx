@@ -57,15 +57,17 @@ export function RetirementModal({ isOpen, onClose, credit, onRetire }: Retiremen
   };
 
   return (
-    <div className="fixed inset-0 bg-background/80 backdrop-blur-sm z-50 flex items-center justify-center p-6 animate-fade-in">
-      <Card className="max-w-md w-full p-8 shadow-2xl border-2 relative">
-        {/* Close Button */}
-        <button
-          onClick={handleClose}
-          className="absolute top-4 right-4 p-2 rounded-full hover:bg-muted transition-colors"
-        >
-          <X className="h-5 w-5" />
-        </button>
+    <div className="fixed inset-0 bg-background/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 animate-fade-in overflow-y-auto">
+      <div className="max-w-md w-full max-h-[90vh] flex flex-col">
+        <Card className="p-6 sm:p-8 shadow-2xl border-2 relative flex-1 flex flex-col overflow-y-auto">
+          {/* Close Button */}
+          <button
+            onClick={handleClose}
+            className="absolute top-4 right-4 p-2 rounded-full hover:bg-muted transition-colors z-10"
+            aria-label="Close modal"
+          >
+            <X className="h-5 w-5" />
+          </button>
 
         {/* Header */}
         <div className="flex items-center gap-3 mb-6">
@@ -172,30 +174,35 @@ export function RetirementModal({ isOpen, onClose, credit, onRetire }: Retiremen
           </Card>
         )}
 
-        {/* Action Buttons */}
-        <div className="flex gap-3">
-          <Button
-            variant="outline"
-            className="flex-1 h-12"
-            onClick={handleClose}
-          >
-            Cancel
-          </Button>
-          <Button
-            className="flex-1 h-12"
-            onClick={handleSubmit}
-            disabled={!quantity || quantity <= 0}
-          >
-            <TrendingDown className="h-5 w-5 mr-2" />
-            Confirm Retirement
-          </Button>
-        </div>
+        {/* Moved to bottom */}
 
-        {/* Info Note */}
-        <p className="text-xs text-center text-muted-foreground mt-4">
-          After confirmation, you'll receive a retirement certificate via email
-        </p>
-      </Card>
+          {/* Info Note */}
+          <p className="text-xs text-center text-muted-foreground mt-4">
+            After confirmation, you'll receive a retirement certificate via email
+          </p>
+        </Card>
+        
+        {/* Modal Footer - Sticky on mobile */}
+        <div className="sticky bottom-0 left-0 right-0 bg-background border-t p-4 -mx-6 -mb-6 sm:static sm:border-t-0 sm:bg-transparent sm:p-0 sm:mx-0 sm:mb-0">
+          <div className="flex gap-3">
+            <Button
+              variant="outline"
+              className="flex-1 h-12"
+              onClick={handleClose}
+            >
+              Cancel
+            </Button>
+            <Button
+              className="flex-1 h-12"
+              onClick={handleSubmit}
+              disabled={!quantity || quantity <= 0}
+            >
+              <TrendingDown className="h-5 w-5 mr-2" />
+              Confirm Retirement
+            </Button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

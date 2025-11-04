@@ -12,14 +12,16 @@ export const metadata: Metadata = {
   },
 };
 
+import { MainNav } from '@/components/main-nav';
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className="antialiased">
+    <html lang="en" className="h-full">
+      <body className="antialiased flex flex-col min-h-screen">
         <ErrorReporter />
         <Script
           src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/scripts//route-messenger.js"
@@ -31,7 +33,10 @@ export default function RootLayout({
           data-debug="true"
           data-custom-data='{"appName": "YourApp", "version": "1.0.0", "greeting": "hi"}'
         />
-        {children}
+        <MainNav />
+        <main className="flex-1">
+          {children}
+        </main>
         <VisualEditsMessenger />
       </body>
     </html>

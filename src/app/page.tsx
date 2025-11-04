@@ -30,9 +30,11 @@ export default function Home() {
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </Link>
-              <Button size="lg" variant="outline" className="h-14 px-8 text-base font-semibold rounded-full">
-                Learn More
-              </Button>
+              <Link href="/about">
+                <Button size="lg" variant="outline" className="h-14 px-8 text-base font-semibold rounded-full">
+                  Learn More
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
