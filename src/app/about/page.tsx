@@ -3,7 +3,7 @@ import Link from 'next/link';
 export default function AboutPage() {
   return (
     <div className="container mx-auto px-4 py-12 max-w-4xl">
-      <h1 className="text-4xl font-bold mb-8 text-center">About Carbon Credit Marketplace</h1>
+      <h1 className="text-4xl font-bold mb-8 text-center">About ClimateCreds</h1>
       
       <section className="mb-12">
         <h2 className="text-2xl font-semibold mb-4">What are Carbon Credits?</h2>

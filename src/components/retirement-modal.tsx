@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { X, TrendingDown, AlertCircle } from "lucide-react";
+import { X, TrendingDown, AlertCircle, Leaf } from "lucide-react";
 import { useState, useEffect } from "react";
 
 interface RetirementModalProps {
@@ -22,10 +22,30 @@ export function RetirementModal({ isOpen, onClose, credit, onRetire }: Retiremen
   const [quantity, setQuantity] = useState<number>(0);
   const [purpose, setPurpose] = useState("");
   const [error, setError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  if (!isOpen || !credit) return null;
+  // Prevent body scroll when modal is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = '';
+      };
+    }
+  }, [isOpen]);
 
-  const handleSubmit = () => {
+  // Reset form when modal is opened/closed or credit changes
+  useEffect(() => {
+    if (isOpen && credit) {
+      setQuantity(0);
+      setPurpose("");
+      setError("");
+      setIsSubmitting(false);
+    }
+  }, [isOpen, credit]);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
     setError("");
 
     if (!quantity || quantity <= 0) {
@@ -33,184 +53,191 @@ export function RetirementModal({ isOpen, onClose, credit, onRetire }: Retiremen
       return;
     }
 
-    if (quantity > credit.amount) {
-      setError(`Maximum ${credit.amount} credits available`);
+    if (quantity > (credit?.amount || 0)) {
+      setError(`Maximum ${credit?.amount} credits available`);
       return;
     }
 
-    // Call the onRetire callback if provided
-    if (onRetire) {
-      onRetire(credit.id, quantity, purpose);
+    try {
+      setIsSubmitting(true);
+      
+      // Call the onRetire callback if provided
+      if (onRetire && credit) {
+        await onRetire(credit.id, quantity, purpose);
+      }
+
+      // Close the modal after successful submission
+      onClose();
+    } catch (err) {
+      setError("Failed to process retirement. Please try again.");
+      console.error("Retirement error:", err);
+    } finally {
+      setIsSubmitting(false);
     }
-
-    // Reset and close
-    setQuantity(0);
-    setPurpose("");
-    onClose();
   };
 
-  const handleClose = () => {
-    setQuantity(0);
-    setPurpose("");
-    setError("");
-    onClose();
-  };
-
-  // Prevent body scroll when modal is open
-  useEffect(() => {
-    document.body.style.overflow = 'hidden';
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, []);
+  if (!isOpen || !credit) return null;
 
   return (
-    <div className="fixed inset-0 bg-background/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-fade-in">
-      <div className="w-full max-w-2xl max-h-[90vh] flex flex-col">
-        <Card className="p-6 shadow-2xl border-2 relative flex flex-col max-h-[90vh] w-full">
-          {/* Close Button */}
-          <button
-            onClick={handleClose}
-            className="absolute top-4 right-4 p-2 rounded-full hover:bg-muted transition-colors z-10"
-            aria-label="Close modal"
-          >
-            <X className="h-5 w-5" />
-          </button>
-
-          {/* Modal Content */}
-          <div className="overflow-y-auto pr-2 -mr-2">
-            {/* Header */}
-            <div className="flex items-center gap-3 mb-6">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
-                <TrendingDown className="h-6 w-6 text-primary" />
-              </div>
+    <div className="fixed inset-0 bg-background/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-fade-in overflow-y-auto">
+      <div className="w-full max-w-lg">
+        <Card className="relative overflow-hidden">
+          {/* Header */}
+          <div className="bg-gradient-to-r from-primary/5 to-primary/10 p-6">
+            <div className="flex justify-between items-start">
               <div>
-                <h3 className="text-2xl font-bold">Retire Carbon Credits</h3>
-                <p className="text-sm text-muted-foreground">Permanent offset recording</p>
-              </div>
-            </div>
-
-            <p className="text-muted-foreground mb-6">
-              Retiring credits permanently removes them from circulation and officially records your environmental impact on the blockchain.
-            </p>
-
-            {/* Credit Info */}
-            <Card className="p-4 border-2 bg-muted/30 mb-6">
-              <p className="text-sm text-muted-foreground mb-1">Selected Project</p>
-              <p className="font-bold mb-3">{credit.project}</p>
-              {credit.batchId && (
-                <>
-                  <p className="text-sm text-muted-foreground mb-1">Batch ID</p>
-                  <p className="font-mono text-sm mb-3">{credit.batchId}</p>
-                </>
-              )}
-              <p className="text-sm text-muted-foreground mb-1">Available Credits</p>
-              <p className="text-2xl font-bold text-primary">{credit.amount.toLocaleString()}</p>
-            </Card>
-
-            {/* Form */}
-            <div className="space-y-4 mb-6">
-              <div>
-                <label htmlFor="quantity" className="block text-sm font-semibold mb-2">
-                  Quantity to Retire <span className="text-primary">*</span>
-                </label>
-                <Input
-                  id="quantity"
-                  type="number"
-                  min="1"
-                  max={credit.amount}
-                  value={quantity || ""}
-                  onChange={(e) => {
-                    setQuantity(parseInt(e.target.value) || 0);
-                    setError("");
-                  }}
-                  placeholder={`Enter amount (max ${credit.amount})`}
-                  className="h-12 border-2"
-                />
-                {error && (
-                  <div className="flex items-center gap-2 mt-2 text-sm text-red-600">
-                    <AlertCircle className="h-4 w-4" />
-                    <span>{error}</span>
-                  </div>
-                )}
-              </div>
-
-              <div>
-                <label htmlFor="purpose" className="block text-sm font-semibold mb-2">
-                  Purpose (Optional)
-                </label>
-                <textarea
-                  id="purpose"
-                  rows={3}
-                  value={purpose}
-                  onChange={(e) => setPurpose(e.target.value)}
-                  placeholder="e.g., Corporate carbon neutrality initiative, Event offset, Supply chain emissions"
-                  className="w-full px-4 py-3 rounded-lg border-2 border-input bg-background resize-none"
-                />
-                <p className="text-xs text-muted-foreground mt-2">
-                  This will appear on your retirement certificate
+                <h2 className="text-2xl font-bold flex items-center gap-2">
+                  <Leaf className="h-6 w-6 text-green-600" />
+                  Retire Carbon Credits
+                </h2>
+                <p className="text-muted-foreground text-sm mt-1">
+                  Permanently remove credits from circulation
                 </p>
               </div>
+              <button
+                onClick={onClose}
+                className="p-1.5 rounded-full hover:bg-background/50 transition-colors"
+                aria-label="Close modal"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+          </div>
+
+          {/* Content */}
+          <form onSubmit={handleSubmit} className="p-6 space-y-6 max-h-[70vh] overflow-y-auto">
+            {/* Project Info */}
+            <div className="space-y-2">
+              <h3 className="font-medium">Project</h3>
+              <Card className="p-4 border">
+                <p className="font-medium">{credit.project}</p>
+                {credit.batchId && (
+                  <p className="text-sm text-muted-foreground mt-1">
+                    Batch: <span className="font-mono">{credit.batchId}</span>
+                  </p>
+                )}
+                <p className="text-sm text-muted-foreground mt-2">
+                  Available: <span className="font-medium text-foreground">{credit.amount.toLocaleString()}</span> credits
+                </p>
+              </Card>
             </div>
 
-            {/* Gas Fee Estimate */}
-            <Card className="p-4 border-2 border-accent/30 bg-accent/5 mb-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm text-muted-foreground mb-1">Estimated Gas Fee</p>
-                  <p className="font-bold">~$2.50 USD</p>
-                </div>
-                <div className="text-right">
-                  <p className="text-xs text-muted-foreground mb-1">Network</p>
-                  <p className="text-sm font-semibold">Ethereum</p>
-                </div>
-              </div>
-            </Card>
+            {/* Quantity Input */}
+            <div className="space-y-2">
+              <label htmlFor="quantity" className="block font-medium">
+                How many credits would you like to retire? <span className="text-red-500">*</span>
+              </label>
+              <Input
+                id="quantity"
+                type="number"
+                min="1"
+                max={credit.amount}
+                value={quantity || ""}
+                onChange={(e) => {
+                  const value = parseInt(e.target.value);
+                  setQuantity(isNaN(value) ? 0 : value);
+                  setError("");
+                }}
+                placeholder={`Enter amount (1-${credit.amount})`}
+                className="h-12 text-base"
+                required
+              />
+              {error && (
+                <p className="text-sm text-red-600 flex items-center gap-2">
+                  <AlertCircle className="h-4 w-4" />
+                  {error}
+                </p>
+              )}
+            </div>
+
+            {/* Purpose */}
+            <div className="space-y-2">
+              <label htmlFor="purpose" className="block font-medium">
+                Purpose (optional)
+              </label>
+              <textarea
+                id="purpose"
+                rows={3}
+                value={purpose}
+                onChange={(e) => setPurpose(e.target.value)}
+                placeholder="E.g., Carbon neutral event, Corporate sustainability goal, etc."
+                className="w-full px-3 py-2 border rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary"
+              />
+              <p className="text-xs text-muted-foreground">
+                This will be included in your retirement certificate
+              </p>
+            </div>
 
             {/* Impact Preview */}
             {quantity > 0 && (
-              <Card className="p-4 border-2 border-primary/30 bg-primary/5 mb-6 animate-fade-in">
-                <p className="text-sm font-semibold text-primary mb-2">Environmental Impact</p>
-                <div className="grid grid-cols-2 gap-3 text-sm">
-                  <div>
-                    <p className="text-muted-foreground">CO₂ Offset</p>
-                    <p className="font-bold">{quantity} tCO₂e</p>
+              <Card className="p-4 border border-green-100 bg-green-50">
+                <h3 className="font-medium text-green-800 flex items-center gap-2">
+                  <TrendingDown className="h-4 w-4" />
+                  Your Impact
+                </h3>
+                <div className="grid grid-cols-2 gap-4 mt-3">
+                  <div className="space-y-1">
+                    <p className="text-sm text-muted-foreground">CO₂ Offset</p>
+                    <p className="font-semibold">{quantity} tCO₂e</p>
                   </div>
-                  <div>
-                    <p className="text-muted-foreground">Trees Equivalent</p>
-                    <p className="font-bold">~{Math.round(quantity * 2.5)}</p>
+                  <div className="space-y-1">
+                    <p className="text-sm text-muted-foreground">Equivalent to</p>
+                    <p className="font-semibold">~{Math.round(quantity * 2.5)} trees</p>
                   </div>
                 </div>
               </Card>
             )}
 
-            {/* Info Note */}
+            {/* Transaction Details */}
+            <div className="space-y-2 text-sm">
+              <div className="flex justify-between py-2 border-b">
+                <span className="text-muted-foreground">Gas Fee</span>
+                <span>~$2.50 USD</span>
+              </div>
+              <div className="flex justify-between py-2 font-medium">
+                <span>Total Credits to Retire</span>
+                <span>{quantity || 0}</span>
+              </div>
+            </div>
+
+            {/* Buttons */}
+            <div className="flex gap-3 pt-2">
+              <Button
+                type="button"
+                variant="outline"
+                className="flex-1 h-12"
+                onClick={onClose}
+                disabled={isSubmitting}
+              >
+                Cancel
+              </Button>
+              <Button
+                type="submit"
+                className="flex-1 h-12 bg-blue-600 hover:bg-blue-700 text-white"
+                disabled={!quantity || isSubmitting}
+              >
+                {isSubmitting ? (
+                  <span className="flex items-center">
+                    <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Processing...
+                  </span>
+                ) : (
+                  <span className="flex items-center">
+                    <TrendingDown className="h-4 w-4 mr-2" />
+                    Confirm Retirement
+                  </span>
+                )}
+              </Button>
+            </div>
+
             <p className="text-xs text-center text-muted-foreground mt-4">
-              After confirmation, you'll receive a retirement certificate via email
+              You'll receive a retirement certificate via email after confirmation.
             </p>
-          </div>
+          </form>
         </Card>
-        
-        {/* Modal Footer */}
-        <div className="sticky bottom-0 left-0 right-0 bg-background border-t p-4 -mx-6 -mb-6 mt-4">
-          <div className="flex gap-3">
-            <Button
-              variant="outline"
-              className="flex-1 h-12"
-              onClick={handleClose}
-            >
-              Cancel
-            </Button>
-            <Button
-              className="flex-1 h-12"
-              onClick={handleSubmit}
-              disabled={!quantity || quantity <= 0}
-            >
-              <TrendingDown className="h-5 w-5 mr-2" />
-              Confirm Retirement
-            </Button>
-          </div>
-        </div>
       </div>
     </div>
   );

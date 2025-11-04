@@ -23,7 +23,7 @@ export function MainNav({ activeLink, showHomeLink = true }: MainNavProps) {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-8">
             <Link href={showHomeLink ? "/" : "/dashboard"} className="flex items-center gap-2">
-              <h1 className="text-2xl font-bold text-primary">CarbonChain</h1>
+              <h1 className="text-2xl font-bold text-primary">ClimateCreds</h1>
             </Link>
             <nav className="hidden md:flex items-center gap-6">
               {showHomeLink && (

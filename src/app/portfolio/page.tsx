@@ -6,6 +6,7 @@ import { Wallet, Bell, Leaf, TrendingDown, Download, Calendar, TrendingUp, MapPi
 import Link from "next/link";
 import { MainNav } from "@/components/main-nav";
 import { useState } from "react";
+import { RetirementModal } from "@/components/retirement-modal";
 
 export default function PortfolioPage() {
   const [showRetirementModal, setShowRetirementModal] = useState(false);
@@ -285,68 +286,17 @@ export default function PortfolioPage() {
         </Card>
       </main>
 
-      {/* Retirement Modal - Will import from component */}
-      {showRetirementModal && selectedCredit && (
-        <div className="fixed inset-0 bg-background/80 backdrop-blur-sm z-50 flex items-center justify-center p-6">
-          <Card className="max-w-md w-full p-8 shadow-2xl border-2 animate-fade-in">
-            <h3 className="text-2xl font-bold mb-4">Retire Carbon Credits</h3>
-            <p className="text-muted-foreground mb-6">
-              Retiring credits permanently removes them from circulation and officially records your environmental impact.
-            </p>
-            
-            <div className="p-4 rounded-xl bg-muted/30 mb-6">
-              <p className="text-sm text-muted-foreground mb-1">Selected Project</p>
-              <p className="font-bold mb-3">{selectedCredit.project}</p>
-              <p className="text-sm text-muted-foreground mb-1">Available Credits</p>
-              <p className="font-bold">{selectedCredit.amount} credits</p>
-            </div>
-
-            <div className="space-y-4 mb-6">
-              <div>
-                <label className="block text-sm font-semibold mb-2">Quantity to Retire</label>
-                <input 
-                  type="number" 
-                  max={selectedCredit.amount}
-                  placeholder="Enter amount"
-                  className="w-full h-12 px-4 rounded-lg border-2 border-input bg-background"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-semibold mb-2">Purpose (Optional)</label>
-                <textarea 
-                  rows={3}
-                  placeholder="e.g., Corporate carbon neutrality initiative"
-                  className="w-full px-4 py-3 rounded-lg border-2 border-input bg-background resize-none"
-                />
-              </div>
-            </div>
-
-            <div className="p-4 rounded-xl bg-accent/10 border border-accent/30 mb-6">
-              <p className="text-sm text-muted-foreground mb-1">Estimated Gas Fee</p>
-              <p className="font-bold">~$2.50 USD</p>
-            </div>
-
-            <div className="flex gap-3">
-              <Button 
-                variant="outline" 
-                className="flex-1 h-12"
-                onClick={() => setShowRetirementModal(false)}
-              >
-                Cancel
-              </Button>
-              <Button 
-                className="flex-1 h-12"
-                onClick={() => {
-                  // Handle retirement
-                  setShowRetirementModal(false);
-                }}
-              >
-                Confirm Retirement
-              </Button>
-            </div>
-          </Card>
-        </div>
-      )}
+      {/* Retirement Modal */}
+      <RetirementModal
+        isOpen={showRetirementModal}
+        onClose={() => setShowRetirementModal(false)}
+        credit={selectedCredit}
+        onRetire={(creditId, amount, purpose) => {
+          // Handle the retirement logic here
+          console.log(`Retiring ${amount} credits from project ${creditId} for purpose: ${purpose}`);
+          // You can add your API call or state update logic here
+        }}
+      />
     </div>
   );
 }

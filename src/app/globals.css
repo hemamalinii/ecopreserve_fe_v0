@@ -20,6 +20,11 @@
   --color-ring: var(--ring);
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
+  
+  /* Custom Colors */
+  --forest: oklch(0.50 0.18 160);
+  --forest-foreground: oklch(0.98 0 0);
+  
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -27,62 +32,84 @@
 }
 
 :root {
-  --radius: 1rem;
+  --radius: 0.75rem;
   
-  /* Premium Green, White, Lilac Palette */
+  /* Modern & Clean Color Palette */
   --background: oklch(0.99 0 0);
-  --foreground: oklch(0.15 0.01 280);
+  --foreground: oklch(0.15 0.02 260);
   
-  /* Primary - Rich Green */
-  --primary: oklch(0.55 0.15 155);
-  --primary-foreground: oklch(0.99 0 0);
+  /* Primary - Deep Blue */
+  --primary: oklch(0.39 0.17 264); /* #1E40AF */
+  --primary-foreground: oklch(0.98 0 0);
   
-  /* Secondary - Soft Lilac */
-  --secondary: oklch(0.75 0.12 295);
-  --secondary-foreground: oklch(0.15 0.01 280);
+  /* Secondary - Mint Green */
+  --secondary: oklch(0.72 0.18 160); /* #10B981 */
+  --secondary-foreground: oklch(0.15 0.02 260);
   
-  /* Accent - Vibrant Lilac */
-  --accent: oklch(0.68 0.18 295);
-  --accent-foreground: oklch(0.99 0 0);
+  /* Accent - Sky Blue */
+  --accent: oklch(0.75 0.18 232); /* #0EA5E9 */
+  --accent-foreground: oklch(0.98 0 0);
   
-  /* Muted - Light Lilac/Gray */
-  --muted: oklch(0.96 0.02 295);
-  --muted-foreground: oklch(0.50 0.03 280);
+  /* Muted - Cool Gray */
+  --muted: oklch(0.96 0.01 260);
+  --muted-foreground: oklch(0.45 0.02 260);
   
   /* UI Elements */
-  --card: oklch(0.99 0 0);
-  --card-foreground: oklch(0.15 0.01 280);
-  --border: oklch(0.92 0.02 295);
-  --input: oklch(0.92 0.02 295);
-  --ring: oklch(0.55 0.15 155);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.15 0.02 260);
+  --border: oklch(0.90 0.01 260);
+  --input: oklch(0.90 0.01 260);
+  --ring: oklch(0.39 0.17 264);
 }
 
 .dark {
-  --background: oklch(0.12 0.01 280);
-  --foreground: oklch(0.96 0.01 295);
+  --background: oklch(0.12 0.01 240);
+  --foreground: oklch(0.95 0.01 260);
   
-  --primary: oklch(0.62 0.17 155);
-  --primary-foreground: oklch(0.12 0.01 280);
+  /* Primary - Lighter Blue */
+  --primary: oklch(0.65 0.15 264);
+  --primary-foreground: oklch(0.12 0.01 240);
   
-  --secondary: oklch(0.30 0.08 295);
-  --secondary-foreground: oklch(0.96 0.01 295);
+  /* Secondary - Darker Mint */
+  --secondary: oklch(0.50 0.15 160);
+  --secondary-foreground: oklch(0.95 0.01 260);
   
-  --accent: oklch(0.72 0.20 295);
-  --accent-foreground: oklch(0.12 0.01 280);
+  /* Accent - Brighter Sky Blue */
+  --accent: oklch(0.78 0.18 232);
+  --accent-foreground: oklch(0.12 0.01 240);
   
-  --muted: oklch(0.20 0.02 280);
-  --muted-foreground: oklch(0.60 0.03 295);
+  --muted: oklch(0.18 0.01 260);
+  --muted-foreground: oklch(0.70 0.02 260);
   
-  --card: oklch(0.16 0.01 280);
-  --card-foreground: oklch(0.96 0.01 295);
-  --border: oklch(0.25 0.02 280);
-  --input: oklch(0.25 0.02 280);
-  --ring: oklch(0.62 0.17 155);
+  --card: oklch(0.15 0.01 240);
+  --card-foreground: oklch(0.95 0.01 260);
+  --border: oklch(0.25 0.02 260);
+  --input: oklch(0.25 0.02 260);
+  --ring: oklch(0.65 0.15 264);
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
+  }
+  
+  /* Forest Green Utility Classes */
+  .bg-forest {
+    background-color: var(--forest);
+    color: var(--forest-foreground);
+  }
+  
+  .text-forest {
+    color: var(--forest);
+  }
+  
+  .border-forest {
+    border-color: var(--forest);
+  }
+  
+  .hover\:bg-forest:hover {
+    background-color: var(--forest);
+    color: var(--forest-foreground);
   }
   
   body {

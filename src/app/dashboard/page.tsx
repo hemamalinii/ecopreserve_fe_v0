@@ -20,7 +20,7 @@ export default function DashboardPage() {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-8">
               <Link href="/">
-                <h1 className="text-2xl font-bold text-primary">CarbonChain</h1>
+                <h1 className="text-2xl font-bold text-primary">ClimateCreds</h1>
               </Link>
               <nav className="hidden md:flex items-center gap-6">
                 <Link href="/marketplace" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
