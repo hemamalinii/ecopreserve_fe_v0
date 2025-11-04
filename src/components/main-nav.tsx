@@ -1,145 +1,85 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X, Wallet, Leaf, Home, User, Settings, LogIn, LogOut } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
+import { Bell, User, Wallet } from 'lucide-react';
 
-export function MainNav() {
-  const [isOpen, setIsOpen] = useState(false);
+interface MainNavProps {
+  activeLink?: string;
+  showHomeLink?: boolean;
+}
+
+export function MainNav({ activeLink, showHomeLink = true }: MainNavProps) {
   const pathname = usePathname();
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  // Close mobile menu when route changes
-  useEffect(() => {
-    setIsOpen(false);
-  }, [pathname]);
-
-  // Add scroll effect
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 10) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const navItems = [
-    { name: 'Home', href: '/', icon: Home },
-    { name: 'Marketplace', href: '/marketplace', icon: Leaf },
-    { name: 'Portfolio', href: '/portfolio', icon: Wallet },
-  ];
-
-  const authItems = [
-    { name: 'Login', href: '/auth/login', icon: LogIn },
-    { name: 'Register', href: '/auth/signup', icon: User },
-  ];
 
   const isActive = (href: string) => {
-    return pathname === href ? 'text-primary' : 'text-muted-foreground hover:text-foreground';
+    return pathname === href ? 'text-primary' : 'text-foreground hover:text-primary transition-colors';
   };
 
   return (
-    <header 
-      className={cn(
-        'sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 transition-all duration-200',
-        isScrolled && 'shadow-sm'
-      )}
-    >
-      <div className="container flex h-16 items-center justify-between">
-        {/* Logo */}
-        <Link href="/" className="flex items-center space-x-2">
-          <Leaf className="h-6 w-6 text-primary" />
-          <span className="font-bold text-xl bg-gradient-to-r from-primary to-green-600 bg-clip-text text-transparent">
-            EcoPreserve
-          </span>
-        </Link>
-
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-8">
-          {navItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={cn(
-                'text-sm font-medium transition-colors hover:text-primary',
-                isActive(item.href)
-              )}
-            >
-              {item.name}
+    <header className="border-b border-border/50 bg-card/50 backdrop-blur-sm sticky top-0 z-10">
+      <div className="mx-auto max-w-7xl px-6 py-4">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-8">
+            <Link href={showHomeLink ? "/" : "/dashboard"} className="flex items-center gap-2">
+              <h1 className="text-2xl font-bold text-primary">CarbonChain</h1>
             </Link>
-          ))}
-        </nav>
-
-        <div className="hidden md:flex items-center space-x-4">
-          <Button variant="outline" size="sm" asChild>
-            <Link href="/auth/login">Login</Link>
-          </Button>
-          <Button size="sm" asChild>
-            <Link href="/auth/signup">Get Started</Link>
-          </Button>
-        </div>
-
-        {/* Mobile menu button */}
-        <button
-          type="button"
-          className="md:hidden p-2 rounded-md text-gray-700 hover:bg-accent hover:text-foreground focus:outline-none"
-          onClick={() => setIsOpen(!isOpen)}
-          aria-label="Toggle menu"
-        >
-          {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-        </button>
-      </div>
-
-      {/* Mobile menu */}
-      <div
-        className={cn(
-          'md:hidden bg-background border-t transition-all duration-300 ease-in-out overflow-hidden',
-          isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-        )}
-      >
-        <div className="px-4 py-3 space-y-3">
-          {navItems.map((item) => {
-            const Icon = item.icon;
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={cn(
-                  'flex items-center px-3 py-2 rounded-md text-base font-medium hover:bg-accent',
-                  isActive(item.href)
-                )}
-              >
-                <Icon className="mr-3 h-5 w-5" />
-                {item.name}
-              </Link>
-            );
-          })}
-          
-          <div className="pt-4 border-t mt-2">
-            {authItems.map((item) => {
-              const Icon = item.icon;
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={cn(
-                    'flex items-center px-3 py-2 rounded-md text-base font-medium hover:bg-accent',
-                    isActive(item.href)
-                  )}
+            <nav className="hidden md:flex items-center gap-6">
+              {showHomeLink && (
+                <Link 
+                  href="/dashboard" 
+                  className={`text-sm font-medium ${isActive('/dashboard')}`}
                 >
-                  <Icon className="mr-3 h-5 w-5" />
-                  {item.name}
+                  Home
                 </Link>
-              );
-            })}
+              )}
+              <Link 
+                href="/marketplace" 
+                className={`text-sm font-medium ${isActive('/marketplace')}`}
+              >
+                Marketplace
+              </Link>
+              <Link 
+                href="/projects" 
+                className={`text-sm font-medium ${isActive('/projects')}`}
+              >
+                My Projects
+              </Link>
+              <Link 
+                href="/portfolio" 
+                className={`text-sm font-medium ${isActive('/portfolio')}`}
+              >
+                Portfolio
+              </Link>
+              <Link 
+                href="/transactions" 
+                className={`text-sm font-medium ${isActive('/transactions')}`}
+              >
+                Transactions
+              </Link>
+            </nav>
+          </div>
+          <div className="flex items-center gap-3">
+            <Button variant="ghost" size="icon" className="rounded-full relative">
+              <Bell className="h-5 w-5" />
+              <span className="absolute top-1 right-1 h-2 w-2 rounded-full bg-primary animate-pulse" />
+            </Button>
+            <div className="h-8 w-px bg-border" />
+            <div className="flex items-center gap-2">
+              <Link 
+                href="/settings/profile"
+                className="flex items-center gap-2 p-1.5 rounded-lg bg-primary/10 hover:bg-primary/20 transition-colors"
+              >
+                <div className="h-8 w-8 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+                  <User className="h-5 w-5" />
+                </div>
+                <div className="hidden md:flex flex-col items-start">
+                  <span className="text-sm font-medium">My Account</span>
+                  <span className="text-xs text-muted-foreground">0x742d...89Ab</span>
+                </div>
+              </Link>
+            </div>
           </div>
         </div>
       </div>

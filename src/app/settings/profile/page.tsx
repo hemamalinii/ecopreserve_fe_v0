@@ -1,144 +1,238 @@
+'use client';
+
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Icons } from '@/components/icons';
+import { toast } from '@/hooks/use-toast';
+
+const profileFormSchema = z.object({
+  name: z.string()
+    .min(2, { message: 'Name must be at least 2 characters' })
+    .nonempty({ message: 'Name is required' }),
+  email: z.string()
+    .email({ message: 'Please enter a valid email address' })
+    .nonempty({ message: 'Email is required' }),
+  role: z.string()
+    .nonempty({ message: 'Please select a role' }),
+  avatar: z.string().optional(),
+});
+
+type ProfileFormValues = z.infer<typeof profileFormSchema>;
 
 export default function ProfilePage() {
+  const [isLoading, setIsLoading] = useState(false);
+  
+  const form = useForm<ProfileFormValues>({
+    resolver: zodResolver(profileFormSchema),
+    defaultValues: {
+      name: 'John Doe',
+      email: 'user@example.com',
+      role: 'user',
+    },
+  });
+
+  async function onSubmit(data: ProfileFormValues) {
+    setIsLoading(true);
+    
+    try {
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      toast({
+        title: 'Success',
+        description: 'Your profile has been updated.',
+      });
+    } catch (error) {
+      toast({
+        title: 'Error',
+        description: 'There was an error updating your profile. Please try again.',
+        variant: 'destructive',
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
   return (
-    <div className="space-y-8">
+    <div className="space-y-6 p-4">
       <div>
-        <h1 className="text-2xl font-bold">Profile & Preferences</h1>
-        <p className="text-muted-foreground">Manage your profile information and preferences</p>
+        <h1 className="text-2xl font-bold tracking-tight">Profile</h1>
+        <p className="text-muted-foreground">
+          Update your profile information and settings
+        </p>
       </div>
 
-      <div className="space-y-8 max-w-2xl">
-        <section className="space-y-6 border-b pb-6">
-          <div className="flex items-center justify-between">
-            <h2 className="text-lg font-medium">Profile Information</h2>
-          </div>
-          
-          <div className="flex flex-col items-center space-y-4">
-            <Avatar className="h-24 w-24">
-              <AvatarImage src="/placeholder-avatar.jpg" />
-              <AvatarFallback>U</AvatarFallback>
+      <Card>
+        <CardHeader>
+          <CardTitle>Profile Information</CardTitle>
+          <CardDescription>Update your profile details</CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="flex items-center space-x-4">
+            <Avatar className="h-16 w-16">
+              <AvatarImage src="/placeholder-avatar.jpg" alt="Profile" />
+              <AvatarFallback>JD</AvatarFallback>
             </Avatar>
-            <Button variant="outline" size="sm">Change Photo</Button>
+            <Button variant="outline" size="sm">
+              Change Photo
+            </Button>
           </div>
 
-          <div className="grid gap-4 md:grid-cols-2">
-            <div className="space-y-2">
-              <Label htmlFor="name">Full Name</Label>
-              <Input id="name" defaultValue="John Doe" />
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+              <FormField
+                control={form.control}
+                name="name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Name</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Enter your name" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Email</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Enter your email" type="email" {...field} disabled />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="role"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Role</FormLabel>
+                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select a role" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        <SelectItem value="user">User</SelectItem>
+                        <SelectItem value="developer">Developer</SelectItem>
+                        <SelectItem value="admin">Admin</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <Button type="submit" disabled={isLoading}>
+                {isLoading && <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />}
+                Save Changes
+              </Button>
+            </form>
+          </Form>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
+          <CardTitle>Wallet Settings</CardTitle>
+          <CardDescription>Manage your connected wallet</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="flex items-center justify-between rounded-lg border p-4">
+            <div>
+              <p className="font-medium">Connected Wallet</p>
+              <p className="text-sm text-muted-foreground">0x12F9...A5C</p>
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
-              <Input id="email" type="email" defaultValue="user@example.com" disabled />
-              <p className="text-xs text-muted-foreground">Contact support to change your email</p>
+            <Button variant="outline" size="sm">
+              Change Wallet
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
+          <CardTitle>Identity Verification</CardTitle>
+          <CardDescription>Complete your KYC verification</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="rounded-lg border p-4">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+              <div className="flex items-center space-x-3">
+                <div className="rounded-full bg-amber-100 p-2">
+                  <Icons.shieldCheck className="h-5 w-5 text-amber-600" />
+                </div>
+                <div>
+                  <p className="font-medium">Identity Verification</p>
+                  <p className="text-sm text-muted-foreground">
+                    Verify your identity to access all features
+                  </p>
+                </div>
+              </div>
+              <Button variant="outline" size="sm" className="w-full sm:w-auto">
+                Start Verification
+              </Button>
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="role">Role</Label>
-              <select
-                id="role"
-                className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                defaultValue="user"
-              >
-                <option value="user">User</option>
-                <option value="developer">Project Developer</option>
-                <option value="verifier">Verifier</option>
-              </select>
+          </div>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
+          <CardTitle>Notification Preferences</CardTitle>
+          <CardDescription>Manage how you receive notifications</CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="flex items-center justify-between rounded-lg border p-4">
+            <div>
+              <p className="font-medium">Email Notifications</p>
+              <p className="text-sm text-muted-foreground">Receive email notifications</p>
             </div>
+            <label className="relative inline-flex items-center cursor-pointer">
+              <input type="checkbox" className="sr-only peer" defaultChecked />
+              <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+            </label>
           </div>
           
-          <div className="flex justify-end pt-2">
-            <Button>Save Changes</Button>
-          </div>
-        </section>
-
-        <section className="space-y-6 border-b pb-6">
-          <h2 className="text-lg font-medium">Wallet Settings</h2>
-          <div className="space-y-4">
+          <div className="flex items-center justify-between rounded-lg border p-4">
             <div>
-              <p className="text-sm font-medium mb-1">Connected Wallet</p>
-              <div className="flex items-center space-x-2">
-                <div className="px-3 py-2 bg-muted rounded-md text-sm font-mono">0x12F9...A5C</div>
-                <Button variant="outline" size="sm">Disconnect</Button>
-                <Button variant="outline" size="sm">Switch Wallet</Button>
-              </div>
+              <p className="font-medium">Transaction Alerts</p>
+              <p className="text-sm text-muted-foreground">Get notified about transactions</p>
             </div>
-          </div>
-        </section>
-
-        <section className="space-y-6 border-b pb-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <h2 className="text-lg font-medium">KYC / Verification</h2>
-              <p className="text-sm text-muted-foreground">Complete verification to unlock all features</p>
-            </div>
-            <div className="flex items-center">
-              <span className="inline-flex items-center rounded-full bg-yellow-100 px-3 py-1 text-xs font-medium text-yellow-800">
-                Not Completed
-              </span>
-            </div>
+            <label className="relative inline-flex items-center cursor-pointer">
+              <input type="checkbox" className="sr-only peer" defaultChecked />
+              <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+            </label>
           </div>
           
-          <div className="space-y-4">
-            <p className="text-sm text-muted-foreground">KYC Requirements:</p>
-            <ul className="space-y-2 text-sm">
-              <li className="flex items-center">
-                <span className="mr-2">•</span>
-                <span>Government ID</span>
-              </li>
-              <li className="flex items-center">
-                <span className="mr-2">•</span>
-                <span>Address Proof</span>
-              </li>
-              <li className="flex items-center">
-                <span className="mr-2">•</span>
-                <span>Selfie Verification</span>
-              </li>
-            </ul>
-            <Button>Start KYC Verification</Button>
+          <div className="flex items-center justify-between rounded-lg border p-4">
+            <div>
+              <p className="font-medium">Market Updates</p>
+              <p className="text-sm text-muted-foreground">Get the latest market news</p>
+            </div>
+            <label className="relative inline-flex items-center cursor-pointer">
+              <input type="checkbox" className="sr-only peer" defaultChecked />
+              <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+            </label>
           </div>
-        </section>
-
-        <section className="space-y-6">
-          <h2 className="text-lg font-medium">Notifications</h2>
-          <div className="space-y-4">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="font-medium">Email Notifications</p>
-                <p className="text-sm text-muted-foreground">Receive email notifications</p>
-              </div>
-              <label className="relative inline-flex items-center cursor-pointer">
-                <input type="checkbox" className="sr-only peer" defaultChecked />
-                <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
-              </label>
-            </div>
-            
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="font-medium">Transaction Alerts</p>
-                <p className="text-sm text-muted-foreground">Get notified about transactions</p>
-              </div>
-              <label className="relative inline-flex items-center cursor-pointer">
-                <input type="checkbox" className="sr-only peer" defaultChecked />
-                <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
-              </label>
-            </div>
-            
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="font-medium">Market Updates</p>
-                <p className="text-sm text-muted-foreground">Get the latest market news</p>
-              </div>
-              <label className="relative inline-flex items-center cursor-pointer">
-                <input type="checkbox" className="sr-only peer" defaultChecked />
-                <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
-              </label>
-            </div>
-          </div>
-        </section>
-      </div>
+        </CardContent>
+      </Card>
     </div>
   );
 }

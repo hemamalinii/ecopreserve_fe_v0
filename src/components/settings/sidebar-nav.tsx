@@ -1,37 +1,46 @@
+'use client';
+
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
+import { User, Wallet, CheckCircle2, Bell, Lock, Settings } from 'lucide-react';
 
-const sidebarItems = [
+type SidebarItem = {
+  title: string;
+  href: string;
+  icon: React.ReactNode;
+};
+
+const sidebarItems: SidebarItem[] = [
   {
     title: 'Profile',
     href: '/settings/profile',
-    icon: '👤',
+    icon: <User className="h-4 w-4" />,
   },
   {
     title: 'Wallet',
     href: '/settings/wallet',
-    icon: '💳',
+    icon: <Wallet className="h-4 w-4" />,
   },
   {
-    title: 'KYC / Verification',
+    title: 'Verification',
     href: '/settings/verification',
-    icon: '✅',
+    icon: <CheckCircle2 className="h-4 w-4" />,
   },
   {
     title: 'Notifications',
     href: '/settings/notifications',
-    icon: '🔔',
+    icon: <Bell className="h-4 w-4" />,
   },
   {
     title: 'Security',
     href: '/settings/security',
-    icon: '🔒',
+    icon: <Lock className="h-4 w-4" />,
   },
   {
     title: 'Account',
     href: '/settings/account',
-    icon: '⚙️',
+    icon: <Settings className="h-4 w-4" />,
   },
 ];
 
@@ -40,21 +49,32 @@ export function SidebarNav() {
 
   return (
     <div className="space-y-1">
-      {sidebarItems.map((item) => (
-        <Link
-          key={item.href}
-          href={item.href}
-          className={cn(
-            'flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors',
-            pathname === item.href
-              ? 'bg-accent text-accent-foreground'
-              : 'text-muted-foreground hover:bg-accent/50',
-          )}
-        >
-          <span className="mr-2 text-lg">{item.icon}</span>
-          <span>{item.title}</span>
-        </Link>
-      ))}
+      <div className="px-3 py-2 mb-4">
+        <h2 className="text-lg font-semibold tracking-tight">Settings</h2>
+        <p className="text-sm text-muted-foreground">Manage your account settings</p>
+      </div>
+      
+      <nav className="space-y-1">
+        {sidebarItems.map((item) => (
+          <Link
+            key={item.href}
+            href={item.href}
+            className={cn(
+              'flex items-center rounded-lg px-3 py-2.5 text-sm font-medium transition-colors',
+              'hover:bg-accent/50 hover:text-accent-foreground',
+              'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
+              pathname.startsWith(item.href)
+                ? 'bg-accent text-accent-foreground font-semibold'
+                : 'text-muted-foreground',
+            )}
+          >
+            <span className="mr-3 flex h-4 w-4 items-center justify-center">
+              {item.icon}
+            </span>
+            {item.title}
+          </Link>
+        ))}
+      </nav>
     </div>
   );
 }

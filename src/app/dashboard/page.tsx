@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Wallet, Leaf, Package, TrendingDown, Plus, ShoppingCart, FolderOpen, Bell } from "lucide-react";
+import { Wallet, Leaf, Package, TrendingDown, Plus, ShoppingCart, FolderOpen, Bell, User, Settings } from "lucide-react";
 import Link from "next/link";
 
 export default function DashboardPage() {
@@ -37,15 +37,25 @@ export default function DashboardPage() {
                 </Link>
               </nav>
             </div>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-4">
               <Button variant="ghost" size="icon" className="rounded-full relative">
                 <Bell className="h-5 w-5" />
                 <span className="absolute top-1 right-1 h-2 w-2 rounded-full bg-primary animate-pulse" />
               </Button>
               <div className="h-8 w-px bg-border" />
-              <div className="flex items-center gap-2 text-sm">
-                <Wallet className="h-4 w-4 text-primary" />
-                <span className="font-mono text-muted-foreground">0x742d...89Ab</span>
+              <div className="flex items-center gap-2">
+                <Link 
+                  href="/settings/profile"
+                  className="flex items-center gap-2 p-1.5 rounded-lg bg-primary/10 hover:bg-primary/20 transition-colors"
+                >
+                  <div className="h-8 w-8 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+                    <User className="h-5 w-5" />
+                  </div>
+                  <div className="hidden md:flex flex-col items-start">
+                    <span className="text-sm font-medium">My Account</span>
+                    <span className="text-xs text-muted-foreground">0x742d...89Ab</span>
+                  </div>
+                </Link>
               </div>
             </div>
           </div>

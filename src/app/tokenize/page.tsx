@@ -1,10 +1,12 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Wallet, Bell, ArrowLeft, Save, Send, Upload, MapPin, FileText } from "lucide-react";
+import { Textarea } from "@/components/ui/textarea";
+import { Card } from "@/components/ui/card";
+import { Plus, Upload, X, FileText, MapPin, Calendar, Leaf, ChevronDown, ArrowLeft, Save, Send } from "lucide-react";
 import Link from "next/link";
+import { MainNav } from "@/components/main-nav";
 import { useState } from "react";
 
 export default function TokenizePage() {
@@ -41,42 +43,7 @@ export default function TokenizePage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-muted/30 to-secondary/20">
-      {/* Header */}
-      <header className="border-b border-border/50 bg-card/50 backdrop-blur-sm sticky top-0 z-10">
-        <div className="mx-auto max-w-7xl px-6 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-8">
-              <Link href="/">
-                <h1 className="text-2xl font-bold text-primary">CarbonChain</h1>
-              </Link>
-              <nav className="hidden md:flex items-center gap-6">
-                <Link href="/marketplace" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
-                  Marketplace
-                </Link>
-                <Link href="/projects" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
-                  My Projects
-                </Link>
-                <Link href="/portfolio" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
-                  Portfolio
-                </Link>
-                <Link href="/transactions" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
-                  Transactions
-                </Link>
-              </nav>
-            </div>
-            <div className="flex items-center gap-3">
-              <Button variant="ghost" size="icon" className="rounded-full relative">
-                <Bell className="h-5 w-5" />
-              </Button>
-              <div className="h-8 w-px bg-border" />
-              <div className="flex items-center gap-2 text-sm">
-                <Wallet className="h-4 w-4 text-primary" />
-                <span className="font-mono text-muted-foreground">0x742d...89Ab</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </header>
+      <MainNav />
 
       {/* Main Content */}
       <main className="mx-auto max-w-4xl px-6 py-12">

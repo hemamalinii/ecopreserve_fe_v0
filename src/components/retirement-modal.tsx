@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { X, TrendingDown, AlertCircle } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 interface RetirementModalProps {
   isOpen: boolean;
@@ -56,10 +56,18 @@ export function RetirementModal({ isOpen, onClose, credit, onRetire }: Retiremen
     onClose();
   };
 
+  // Prevent body scroll when modal is open
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, []);
+
   return (
-    <div className="fixed inset-0 bg-background/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6 animate-fade-in overflow-y-auto">
-      <div className="max-w-md w-full max-h-[90vh] flex flex-col">
-        <Card className="p-6 sm:p-8 shadow-2xl border-2 relative flex-1 flex flex-col overflow-y-auto">
+    <div className="fixed inset-0 bg-background/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-fade-in">
+      <div className="w-full max-w-2xl max-h-[90vh] flex flex-col">
+        <Card className="p-6 shadow-2xl border-2 relative flex flex-col max-h-[90vh] w-full">
           {/* Close Button */}
           <button
             onClick={handleClose}
@@ -69,121 +77,122 @@ export function RetirementModal({ isOpen, onClose, credit, onRetire }: Retiremen
             <X className="h-5 w-5" />
           </button>
 
-        {/* Header */}
-        <div className="flex items-center gap-3 mb-6">
-          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
-            <TrendingDown className="h-6 w-6 text-primary" />
-          </div>
-          <div>
-            <h3 className="text-2xl font-bold">Retire Carbon Credits</h3>
-            <p className="text-sm text-muted-foreground">Permanent offset recording</p>
-          </div>
-        </div>
-
-        <p className="text-muted-foreground mb-6">
-          Retiring credits permanently removes them from circulation and officially records your environmental impact on the blockchain.
-        </p>
-
-        {/* Credit Info */}
-        <Card className="p-4 border-2 bg-muted/30 mb-6">
-          <p className="text-sm text-muted-foreground mb-1">Selected Project</p>
-          <p className="font-bold mb-3">{credit.project}</p>
-          {credit.batchId && (
-            <>
-              <p className="text-sm text-muted-foreground mb-1">Batch ID</p>
-              <p className="font-mono text-sm mb-3">{credit.batchId}</p>
-            </>
-          )}
-          <p className="text-sm text-muted-foreground mb-1">Available Credits</p>
-          <p className="text-2xl font-bold text-primary">{credit.amount.toLocaleString()}</p>
-        </Card>
-
-        {/* Form */}
-        <div className="space-y-4 mb-6">
-          <div>
-            <label htmlFor="quantity" className="block text-sm font-semibold mb-2">
-              Quantity to Retire <span className="text-primary">*</span>
-            </label>
-            <Input
-              id="quantity"
-              type="number"
-              min="1"
-              max={credit.amount}
-              value={quantity || ""}
-              onChange={(e) => {
-                setQuantity(parseInt(e.target.value) || 0);
-                setError("");
-              }}
-              placeholder={`Enter amount (max ${credit.amount})`}
-              className="h-12 border-2"
-            />
-            {error && (
-              <div className="flex items-center gap-2 mt-2 text-sm text-red-600">
-                <AlertCircle className="h-4 w-4" />
-                <span>{error}</span>
+          {/* Modal Content */}
+          <div className="overflow-y-auto pr-2 -mr-2">
+            {/* Header */}
+            <div className="flex items-center gap-3 mb-6">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
+                <TrendingDown className="h-6 w-6 text-primary" />
               </div>
-            )}
-          </div>
+              <div>
+                <h3 className="text-2xl font-bold">Retire Carbon Credits</h3>
+                <p className="text-sm text-muted-foreground">Permanent offset recording</p>
+              </div>
+            </div>
 
-          <div>
-            <label htmlFor="purpose" className="block text-sm font-semibold mb-2">
-              Purpose (Optional)
-            </label>
-            <textarea
-              id="purpose"
-              rows={3}
-              value={purpose}
-              onChange={(e) => setPurpose(e.target.value)}
-              placeholder="e.g., Corporate carbon neutrality initiative, Event offset, Supply chain emissions"
-              className="w-full px-4 py-3 rounded-lg border-2 border-input bg-background resize-none"
-            />
-            <p className="text-xs text-muted-foreground mt-2">
-              This will appear on your retirement certificate
+            <p className="text-muted-foreground mb-6">
+              Retiring credits permanently removes them from circulation and officially records your environmental impact on the blockchain.
+            </p>
+
+            {/* Credit Info */}
+            <Card className="p-4 border-2 bg-muted/30 mb-6">
+              <p className="text-sm text-muted-foreground mb-1">Selected Project</p>
+              <p className="font-bold mb-3">{credit.project}</p>
+              {credit.batchId && (
+                <>
+                  <p className="text-sm text-muted-foreground mb-1">Batch ID</p>
+                  <p className="font-mono text-sm mb-3">{credit.batchId}</p>
+                </>
+              )}
+              <p className="text-sm text-muted-foreground mb-1">Available Credits</p>
+              <p className="text-2xl font-bold text-primary">{credit.amount.toLocaleString()}</p>
+            </Card>
+
+            {/* Form */}
+            <div className="space-y-4 mb-6">
+              <div>
+                <label htmlFor="quantity" className="block text-sm font-semibold mb-2">
+                  Quantity to Retire <span className="text-primary">*</span>
+                </label>
+                <Input
+                  id="quantity"
+                  type="number"
+                  min="1"
+                  max={credit.amount}
+                  value={quantity || ""}
+                  onChange={(e) => {
+                    setQuantity(parseInt(e.target.value) || 0);
+                    setError("");
+                  }}
+                  placeholder={`Enter amount (max ${credit.amount})`}
+                  className="h-12 border-2"
+                />
+                {error && (
+                  <div className="flex items-center gap-2 mt-2 text-sm text-red-600">
+                    <AlertCircle className="h-4 w-4" />
+                    <span>{error}</span>
+                  </div>
+                )}
+              </div>
+
+              <div>
+                <label htmlFor="purpose" className="block text-sm font-semibold mb-2">
+                  Purpose (Optional)
+                </label>
+                <textarea
+                  id="purpose"
+                  rows={3}
+                  value={purpose}
+                  onChange={(e) => setPurpose(e.target.value)}
+                  placeholder="e.g., Corporate carbon neutrality initiative, Event offset, Supply chain emissions"
+                  className="w-full px-4 py-3 rounded-lg border-2 border-input bg-background resize-none"
+                />
+                <p className="text-xs text-muted-foreground mt-2">
+                  This will appear on your retirement certificate
+                </p>
+              </div>
+            </div>
+
+            {/* Gas Fee Estimate */}
+            <Card className="p-4 border-2 border-accent/30 bg-accent/5 mb-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm text-muted-foreground mb-1">Estimated Gas Fee</p>
+                  <p className="font-bold">~$2.50 USD</p>
+                </div>
+                <div className="text-right">
+                  <p className="text-xs text-muted-foreground mb-1">Network</p>
+                  <p className="text-sm font-semibold">Ethereum</p>
+                </div>
+              </div>
+            </Card>
+
+            {/* Impact Preview */}
+            {quantity > 0 && (
+              <Card className="p-4 border-2 border-primary/30 bg-primary/5 mb-6 animate-fade-in">
+                <p className="text-sm font-semibold text-primary mb-2">Environmental Impact</p>
+                <div className="grid grid-cols-2 gap-3 text-sm">
+                  <div>
+                    <p className="text-muted-foreground">CO₂ Offset</p>
+                    <p className="font-bold">{quantity} tCO₂e</p>
+                  </div>
+                  <div>
+                    <p className="text-muted-foreground">Trees Equivalent</p>
+                    <p className="font-bold">~{Math.round(quantity * 2.5)}</p>
+                  </div>
+                </div>
+              </Card>
+            )}
+
+            {/* Info Note */}
+            <p className="text-xs text-center text-muted-foreground mt-4">
+              After confirmation, you'll receive a retirement certificate via email
             </p>
           </div>
-        </div>
-
-        {/* Gas Fee Estimate */}
-        <Card className="p-4 border-2 border-accent/30 bg-accent/5 mb-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm text-muted-foreground mb-1">Estimated Gas Fee</p>
-              <p className="font-bold">~$2.50 USD</p>
-            </div>
-            <div className="text-right">
-              <p className="text-xs text-muted-foreground mb-1">Network</p>
-              <p className="text-sm font-semibold">Ethereum</p>
-            </div>
-          </div>
-        </Card>
-
-        {/* Impact Preview */}
-        {quantity > 0 && (
-          <Card className="p-4 border-2 border-primary/30 bg-primary/5 mb-6 animate-fade-in">
-            <p className="text-sm font-semibold text-primary mb-2">Environmental Impact</p>
-            <div className="grid grid-cols-2 gap-3 text-sm">
-              <div>
-                <p className="text-muted-foreground">CO₂ Offset</p>
-                <p className="font-bold">{quantity} tCO₂e</p>
-              </div>
-              <div>
-                <p className="text-muted-foreground">Trees Equivalent</p>
-                <p className="font-bold">~{Math.round(quantity * 2.5)}</p>
-              </div>
-            </div>
-          </Card>
-        )}
-
-        {/* Moved to bottom */}
-
-          {/* Info Note */}
-          <p className="text-xs text-center text-muted-foreground mt-4">
-            After confirmation, you'll receive a retirement certificate via email
-          </p>
         </Card>
         
-        {/* Modal Footer - Sticky on mobile */}
-        <div className="sticky bottom-0 left-0 right-0 bg-background border-t p-4 -mx-6 -mb-6 sm:static sm:border-t-0 sm:bg-transparent sm:p-0 sm:mx-0 sm:mb-0">
+        {/* Modal Footer */}
+        <div className="sticky bottom-0 left-0 right-0 bg-background border-t p-4 -mx-6 -mb-6 mt-4">
           <div className="flex gap-3">
             <Button
               variant="outline"
