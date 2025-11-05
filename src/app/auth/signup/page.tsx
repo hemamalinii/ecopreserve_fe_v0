@@ -9,9 +9,12 @@ import { Label } from "@/components/ui/label";
 import { Card } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { ArrowLeft, Mail, Lock, User } from "lucide-react";
+import { useAuth } from "@/lib/auth-context";
+import { toast } from "@/components/ui/use-toast";
 
 export default function SignupPage() {
   const router = useRouter();
+  const { login } = useAuth();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -23,23 +26,84 @@ export default function SignupPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (formData.password !== formData.confirmPassword) {
+      toast({
+        title: "Error",
+        description: "Passwords do not match",
+        variant: "destructive",
+      });
+      return;
+    }
+    
+    if (!formData.agreeToTerms) {
+      toast({
+        title: "Error",
+        description: "Please agree to the terms and conditions",
+        variant: "destructive",
+      });
+      return;
+    }
+    
     setIsLoading(true);
     
-    // Simulate authentication
-    setTimeout(() => {
+    try {
+      // In a real app, you would create an account with your backend
+      await login({
+        id: `user-${Date.now()}`,
+        email: formData.email,
+        name: formData.name,
+        onboardingComplete: false,
+        createdAt: new Date().toISOString(),
+      });
+      
+      toast({
+        title: "Success",
+        description: "Account created successfully!",
+        variant: "default",
+      });
+      
+      router.push("/onboarding");
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to create account. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
       setIsLoading(false);
-      router.push("/onboarding/wallet");
-    }, 1500);
+    }
   };
 
-  const handleGoogleSignup = () => {
+  const handleGoogleSignup = async () => {
     setIsLoading(true);
     
-    // Simulate Google OAuth
-    setTimeout(() => {
+    try {
+      // In a real app, you would use Google OAuth
+      await login({
+        id: `google-${Date.now()}`,
+        email: "user@gmail.com",
+        name: "Google User",
+        onboardingComplete: false,
+        createdAt: new Date().toISOString(),
+      });
+      
+      toast({
+        title: "Success",
+        description: "Account created with Google successfully.",
+        variant: "default",
+      });
+      
+      router.push("/onboarding");
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to sign up with Google.",
+        variant: "destructive",
+      });
+    } finally {
       setIsLoading(false);
-      router.push("/onboarding/wallet");
-    }, 1500);
+    }
   };
 
   return (

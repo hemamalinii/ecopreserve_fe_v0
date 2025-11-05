@@ -1,86 +1,126 @@
-'use client';
+"use client";
 
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
-import { Bell, User, Wallet } from 'lucide-react';
+import { Bell, User, LogIn, LogOut, Home, ShoppingCart, FolderKanban, LayoutDashboard, Info } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { useAuth } from '../lib/auth-context';
 
 interface MainNavProps {
-  activeLink?: string;
   showHomeLink?: boolean;
 }
 
-export function MainNav({ activeLink, showHomeLink = true }: MainNavProps) {
+export function MainNav({ showHomeLink = true }: MainNavProps) {
   const pathname = usePathname();
+  const router = useRouter();
+  const { user, logout } = useAuth();
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   const isActive = (href: string) => {
-    return pathname === href ? 'text-primary' : 'text-foreground hover:text-primary transition-colors';
+    return pathname === href ? 'text-primary font-semibold' : 'text-foreground hover:text-primary transition-colors';
   };
 
+  const handleLogout = () => {
+    logout();
+    router.push('/');
+  };
+
+  // Conditional Home button behavior: Dashboard if logged in, Landing page if not
+  const getHomeHref = () => {
+    return user ? '/dashboard' : '/';
+  };
+
+  const navItems = [
+    { name: 'Home', href: getHomeHref(), icon: <Home className="h-4 w-4" /> },
+    { name: 'Marketplace', href: '/marketplace', icon: <ShoppingCart className="h-4 w-4" /> },
+    { name: 'My Projects', href: '/projects', icon: <FolderKanban className="h-4 w-4" /> },
+    { name: 'Dashboard', href: '/dashboard', icon: <LayoutDashboard className="h-4 w-4" /> },
+    { name: 'About', href: '/about', icon: <Info className="h-4 w-4" /> },
+  ];
+
   return (
-    <header className="border-b border-border/50 bg-card/50 backdrop-blur-sm sticky top-0 z-10">
-      <div className="mx-auto max-w-7xl px-6 py-4">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-8">
-            <Link href={showHomeLink ? "/" : "/dashboard"} className="flex items-center gap-2">
-              <h1 className="text-2xl font-bold text-primary">ClimateCreds</h1>
-            </Link>
-            <nav className="hidden md:flex items-center gap-6">
-              {showHomeLink && (
-                <Link 
-                  href="/dashboard" 
-                  className={`text-sm font-medium ${isActive('/dashboard')}`}
-                >
-                  Home
-                </Link>
-              )}
-              <Link 
-                href="/marketplace" 
-                className={`text-sm font-medium ${isActive('/marketplace')}`}
+    <header className="sticky top-0 z-50 w-full border-b border-border/50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <div className="container flex h-16 items-center justify-between px-4">
+        {/* Left side - Logo and Navigation */}
+        <div className="flex items-center gap-8">
+          <Link href="/" className="flex items-center space-x-2">
+            <span className="text-xl font-bold text-primary">EcoPreserve</span>
+          </Link>
+          
+          <nav className="hidden items-center space-x-6 md:flex">
+            {navItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary ${isActive(item.href)}`}
               >
-                Marketplace
+                <span className="hidden sm:inline">{item.icon}</span>
+                {item.name}
               </Link>
+            ))}
+          </nav>
+        </div>
+
+        {/* Right side - Auth and Profile */}
+        <div className="flex items-center gap-4">
+          {/* Login Status */}
+          <div className="hidden items-center text-sm md:flex">
+            {isClient && user ? (
+              <span className="text-muted-foreground">
+                Signed in as <span className="font-medium text-foreground">{user.name || user.email?.split('@')[0]}</span>
+              </span>
+            ) : (
               <Link 
-                href="/projects" 
-                className={`text-sm font-medium ${isActive('/projects')}`}
+                href="/auth/login" 
+                className="flex items-center gap-1 text-muted-foreground hover:text-foreground"
               >
-                My Projects
+                <LogIn className="h-4 w-4" />
+                <span>Guest (Sign In)</span>
               </Link>
-              <Link 
-                href="/portfolio" 
-                className={`text-sm font-medium ${isActive('/portfolio')}`}
-              >
-                Portfolio
-              </Link>
-              <Link 
-                href="/transactions" 
-                className={`text-sm font-medium ${isActive('/transactions')}`}
-              >
-                Transactions
-              </Link>
-            </nav>
+            )}
           </div>
-          <div className="flex items-center gap-3">
-            <Button variant="ghost" size="icon" className="rounded-full relative">
-              <Bell className="h-5 w-5" />
-              <span className="absolute top-1 right-1 h-2 w-2 rounded-full bg-primary animate-pulse" />
-            </Button>
-            <div className="h-8 w-px bg-border" />
+
+          {/* Notifications */}
+          <Button variant="ghost" size="icon" className="rounded-full">
+            <Bell className="h-5 w-5" />
+            <span className="sr-only">Notifications</span>
+          </Button>
+
+          {/* Profile Dropdown */}
+          {isClient && user ? (
             <div className="flex items-center gap-2">
-              <Link 
-                href="/settings/profile"
-                className="flex items-center gap-2 p-1.5 rounded-lg bg-primary/10 hover:bg-primary/20 transition-colors"
-              >
-                <div className="h-8 w-8 rounded-full bg-primary/20 flex items-center justify-center text-primary">
-                  <User className="h-5 w-5" />
+              <div className="h-8 w-px bg-border" />
+              <div className="relative group">
+                <Button variant="ghost" className="flex items-center gap-2 px-2">
+                  <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center">
+                    <User className="h-4 w-4 text-primary" />
+                  </div>
+                  <span className="hidden md:inline">Profile</span>
+                </Button>
+                <div className="absolute right-0 mt-2 w-48 rounded-md border bg-popover p-1 shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                  <Link 
+                    href="/profile" 
+                    className="flex w-full items-center gap-2 rounded-sm px-3 py-2 text-sm hover:bg-accent"
+                  >
+                    <User className="h-4 w-4" />
+                    <span>My Profile</span>
+                  </Link>
+                  <button 
+                    onClick={handleLogout}
+                    className="flex w-full items-center gap-2 rounded-sm px-3 py-2 text-sm hover:bg-accent text-destructive"
+                  >
+                    <LogOut className="h-4 w-4" />
+                    <span>Sign Out</span>
+                  </button>
                 </div>
-                <div className="hidden md:flex flex-col items-start">
-                  <span className="text-sm font-medium">My Account</span>
-                  <span className="text-xs text-muted-foreground">0x742d...89Ab</span>
-                </div>
-              </Link>
+              </div>
             </div>
-          </div>
+          ) : null}
         </div>
       </div>
     </header>

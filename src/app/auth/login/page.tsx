@@ -2,38 +2,119 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card } from "@/components/ui/card";
-import { ArrowLeft, Mail, Lock } from "lucide-react";
+import { ArrowLeft, Mail, Lock, User as UserIcon } from "lucide-react";
+import { useAuth } from "@/lib/auth-context";
+import { toast } from "@/components/ui/use-toast";
 
 export default function LoginPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const { login } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  
+  const redirectUrl = searchParams?.get('redirect') || '/onboarding';
 
   const handleEmailLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     
-    // Simulate authentication
-    setTimeout(() => {
+    try {
+      // In a real app, you would validate credentials with your backend
+      // For now, we'll create a user object
+      await login({
+        id: `user-${Date.now()}`,
+        email,
+        name: email.split('@')[0],
+        onboardingComplete: false,
+        createdAt: new Date().toISOString(),
+      });
+      
+      toast({
+        title: "Success",
+        description: "You have been signed in successfully.",
+        variant: "default",
+      });
+      
+      router.push(redirectUrl);
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Invalid email or password. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
       setIsLoading(false);
-      router.push("/onboarding/wallet");
-    }, 1500);
+    }
   };
 
-  const handleGoogleLogin = () => {
+  const handleGoogleLogin = async () => {
     setIsLoading(true);
     
-    // Simulate Google OAuth
-    setTimeout(() => {
+    try {
+      // In a real app, you would use Google OAuth
+      // For now, we'll simulate it
+      await login({
+        id: `google-${Date.now()}`,
+        email: "user@gmail.com",
+        name: "Google User",
+        onboardingComplete: false,
+        createdAt: new Date().toISOString(),
+      });
+      
+      toast({
+        title: "Success",
+        description: "Signed in with Google successfully.",
+        variant: "default",
+      });
+      
+      router.push(redirectUrl);
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to sign in with Google.",
+        variant: "destructive",
+      });
+    } finally {
       setIsLoading(false);
-      router.push("/onboarding/wallet");
-    }, 1500);
+    }
+  };
+  
+  const handleGuestLogin = async () => {
+    setIsLoading(true);
+    
+    try {
+      await login({
+        id: `guest-${Date.now()}`,
+        name: "Guest User",
+        email: `guest-${Date.now()}@example.com`,
+        role: '',
+        onboardingComplete: false,
+        createdAt: new Date().toISOString(),
+      });
+      
+      toast({
+        title: "Welcome, Guest!",
+        description: "You're browsing as a guest. Sign up to save your progress.",
+        variant: "default",
+      });
+      
+      router.push('/');
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to continue as guest.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -140,6 +221,16 @@ export default function LoginPage() {
               />
             </svg>
             Continue with Google
+          </Button>
+
+          <Button
+            onClick={handleGuestLogin}
+            variant="outline"
+            className="w-full h-12 text-base font-semibold rounded-xl border-2 hover:bg-accent/10 mt-3"
+            disabled={isLoading}
+          >
+            <UserIcon className="mr-2 h-5 w-5" />
+            Continue as Guest
           </Button>
 
           <p className="mt-8 text-center text-sm text-muted-foreground">
