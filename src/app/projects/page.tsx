@@ -80,7 +80,7 @@ export default function MyProjectsPage() {
       case "draft":
         return (
           <>
-            <Link href={`/tokenize?id=${project.id}`}>
+            <Link href={`/projects/${project.id}/edit`}>
               <Button variant="outline" size="sm">Edit Project</Button>
             </Link>
             <Link href="/upload-mrv">
@@ -105,20 +105,26 @@ export default function MyProjectsPage() {
             <Link href={`/verification/${project.id}`}>
               <Button variant="outline" size="sm">View Details</Button>
             </Link>
-            <Button size="sm">
-              <Coins className="h-4 w-4 mr-2" />
-              Mint Credits
-            </Button>
+            <Link href="/credits/mint">
+              <Button size="sm">
+                <Coins className="h-4 w-4 mr-2" />
+                Mint Credits
+              </Button>
+            </Link>
           </>
         );
       case "minted":
         return (
           <>
-            <Button variant="outline" size="sm">Manage Credits</Button>
-            <Button size="sm">
-              <TrendingUp className="h-4 w-4 mr-2" />
-              List for Sale
-            </Button>
+            <Link href="/credits/manage">
+              <Button variant="outline" size="sm">Manage Credits</Button>
+            </Link>
+            <Link href="/credits/sell">
+              <Button size="sm">
+                <TrendingUp className="h-4 w-4 mr-2" />
+                List for Sale
+              </Button>
+            </Link>
           </>
         );
       case "listed":
