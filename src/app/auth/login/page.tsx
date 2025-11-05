@@ -95,7 +95,7 @@ export default function LoginPage() {
         name: "Guest User",
         email: `guest-${Date.now()}@example.com`,
         role: '',
-        onboardingComplete: false,
+        onboardingComplete: true, // Allow guests to browse without onboarding
         createdAt: new Date().toISOString(),
       });
       

@@ -5,7 +5,6 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Wallet, Bell, Search, SlidersHorizontal, MapPin, Leaf, CheckCircle2 } from "lucide-react";
 import Link from "next/link";
-import { MainNav } from "@/components/main-nav";
 import { useState } from "react";
 
 export default function MarketplacePage() {
@@ -89,8 +88,6 @@ export default function MarketplacePage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-muted/30 to-secondary/20">
-      <MainNav />
-
       {/* Main Content */}
       <main className="mx-auto max-w-7xl px-6 py-12">
         <div className="mb-8 animate-fade-in-up">

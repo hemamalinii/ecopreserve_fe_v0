@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { MainNav } from '@/components/main-nav';
 import { ArrowLeft, Send, Trash2, Eye, Coins, Filter, Search } from 'lucide-react';
 import { toast } from '@/components/ui/use-toast';
 import { Input } from '@/components/ui/input';
@@ -153,8 +152,6 @@ export default function ManageCreditsPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-muted/30 to-secondary/20">
-      <MainNav />
-
       <main className="mx-auto max-w-7xl px-6 py-12">
         {/* Header */}
         <div className="mb-8 animate-fade-in-up">

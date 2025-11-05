@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ArrowLeft, CheckCircle2, Clock, AlertCircle, FileText, MessageSquare, Coins } from "lucide-react";
 import Link from "next/link";
-import { MainNav } from "@/components/main-nav";
 
 export default function VerificationStatusPage({ params }: { params: { id: string } }) {
   const project = {
@@ -114,10 +113,8 @@ export default function VerificationStatusPage({ params }: { params: { id: strin
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-muted/30 to-secondary/20">
-      <MainNav />
-
       {/* Main Content */}
-      <main className="mx-auto max-w-6xl px-6 py-12">
+      <main className="mx-auto max-w-7xl px-6 py-12">
         {/* Back Button */}
         <Link href="/projects">
           <Button variant="ghost" className="mb-6 animate-fade-in-up">

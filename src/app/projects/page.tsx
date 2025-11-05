@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Plus, MapPin, CheckCircle2, Clock, FileText, Coins, TrendingUp, Edit } from "lucide-react";
 import Link from "next/link";
-import { MainNav } from "@/components/main-nav";
 
 export default function MyProjectsPage() {
   const projects = [
@@ -143,8 +142,6 @@ export default function MyProjectsPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-muted/30 to-secondary/20">
-      <MainNav />
-
       {/* Main Content */}
       <main className="mx-auto max-w-7xl px-6 py-12">
         <div className="flex items-center justify-between mb-8 animate-fade-in-up">

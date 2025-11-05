@@ -6,7 +6,6 @@ import { MapPin, CheckCircle2, FileText, Calendar, Award, ShoppingCart, MessageS
 import Link from "next/link";
 import { useState } from "react";
 import { BuyCreditsModal } from "@/components/buy-credits-modal";
-import { MainNav } from "@/components/main-nav";
 
 export default function ProjectDetailsPage({ params }: { params: { id: string } }) {
   const [activeTab, setActiveTab] = useState("overview");
@@ -55,8 +54,6 @@ export default function ProjectDetailsPage({ params }: { params: { id: string } 
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-muted/30 to-secondary/20">
-      <MainNav />
-
       {/* Main Content */}
       <main className="mx-auto max-w-7xl px-6 py-12">
         {/* Back Button */}

@@ -6,7 +6,6 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { MainNav } from '@/components/main-nav';
 import { ArrowLeft, Save, AlertTriangle } from 'lucide-react';
 import { toast } from '@/components/ui/use-toast';
 
@@ -109,8 +108,6 @@ export default function EditProjectPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-muted/30 to-secondary/20">
-      <MainNav />
-
       <main className="mx-auto max-w-4xl px-6 py-12">
         {/* Header with Back Button */}
         <div className="mb-8 animate-fade-in-up">

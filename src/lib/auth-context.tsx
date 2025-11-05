@@ -71,8 +71,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (isLoading) return;
 
-    const publicPaths = ['/auth/login', '/auth/signup', '/'];
+    const publicPaths = ['/auth/login', '/auth/signup', '/', '/marketplace', '/about'];
     const isPublicPath = publicPaths.some(path => pathname?.startsWith(path));
+    const isOnboardingPath = pathname?.startsWith('/onboarding');
 
     // Redirect to login if not authenticated and not on a public path
     if (!user && !isPublicPath) {
@@ -80,15 +81,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       return;
     }
 
-    // Redirect to onboarding if authenticated but onboarding is not complete
-    if (user && !user.onboardingComplete && !pathname?.startsWith('/onboarding')) {
+    // Redirect to onboarding if authenticated but onboarding is not complete (and not already on onboarding)
+    if (user && !user.onboardingComplete && !isOnboardingPath && !isPublicPath) {
       router.push('/onboarding');
       return;
     }
 
     // Redirect to dashboard if already authenticated and trying to access auth pages
-    if (user && isPublicPath && pathname !== '/') {
-      router.push(user.onboardingComplete ? '/dashboard' : '/onboarding');
+    if (user && user.onboardingComplete && (pathname === '/auth/login' || pathname === '/auth/signup')) {
+      router.push('/dashboard');
     }
   }, [user, isLoading, pathname, router]);
 
@@ -112,8 +113,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       if (typeof window !== 'undefined') {
         localStorage.setItem('user', JSON.stringify(userWithDefaults));
       }
-      
-      return userWithDefaults;
     } catch (err) {
       console.error('Login error:', err);
       setError('Failed to log in. Please try again.');
@@ -169,8 +168,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       if (typeof window !== 'undefined') {
         localStorage.setItem('user', JSON.stringify(updatedUser));
       }
-      
-      return updatedUser;
     } catch (err) {
       console.error('Update user error:', err);
       setError('Failed to update user. Please try again.');

@@ -6,7 +6,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
 import { Plus, Upload, X, FileText, MapPin, Calendar, Leaf, ChevronDown, ArrowLeft, Save, Send } from "lucide-react";
 import Link from "next/link";
-import { MainNav } from "@/components/main-nav";
 import { useState } from "react";
 
 export default function TokenizePage() {
@@ -43,8 +42,6 @@ export default function TokenizePage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-muted/30 to-secondary/20">
-      <MainNav />
-
       {/* Main Content */}
       <main className="mx-auto max-w-4xl px-6 py-12">
         {/* Back Button */}

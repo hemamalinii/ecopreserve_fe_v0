@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
-import { Bell, User, LogIn, LogOut, Home, ShoppingCart, FolderKanban, LayoutDashboard, Info } from 'lucide-react';
+import { Bell, User, LogIn, LogOut, Home, ShoppingCart, FolderKanban, LayoutDashboard, Info, Wallet, Receipt } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { useAuth } from '../lib/auth-context';
 
@@ -35,11 +35,17 @@ export function MainNav({ showHomeLink = true }: MainNavProps) {
     return user ? '/dashboard' : '/';
   };
 
-  const navItems = [
-    { name: 'Home', href: getHomeHref(), icon: <Home className="h-4 w-4" /> },
+  const navItems = user ? [
+    // Logged-in user navigation
+    { name: 'Dashboard', href: '/dashboard', icon: <LayoutDashboard className="h-4 w-4" /> },
     { name: 'Marketplace', href: '/marketplace', icon: <ShoppingCart className="h-4 w-4" /> },
     { name: 'My Projects', href: '/projects', icon: <FolderKanban className="h-4 w-4" /> },
-    { name: 'Dashboard', href: '/dashboard', icon: <LayoutDashboard className="h-4 w-4" /> },
+    { name: 'Portfolio', href: '/portfolio', icon: <Wallet className="h-4 w-4" /> },
+    { name: 'Transactions', href: '/transactions', icon: <Receipt className="h-4 w-4" /> },
+  ] : [
+    // Guest navigation
+    { name: 'Home', href: '/', icon: <Home className="h-4 w-4" /> },
+    { name: 'Marketplace', href: '/marketplace', icon: <ShoppingCart className="h-4 w-4" /> },
     { name: 'About', href: '/about', icon: <Info className="h-4 w-4" /> },
   ];
 
