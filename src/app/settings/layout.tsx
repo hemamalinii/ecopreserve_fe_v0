@@ -1,6 +1,5 @@
 'use client';
 
-import { MainNav } from '@/components/main-nav';
 import { SidebarNav } from '@/components/settings/sidebar-nav';
 
 export default function SettingsLayout({
@@ -10,7 +9,6 @@ export default function SettingsLayout({
 }) {
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-muted/30 to-secondary/20">
-      <MainNav />
       <div className="container mx-auto px-4 py-8">
         <div className="flex flex-col space-y-8 lg:flex-row lg:space-x-12 lg:space-y-0">
           <aside className="lg:w-64">

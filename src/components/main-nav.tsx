@@ -110,7 +110,7 @@ export function MainNav({ showHomeLink = true }: MainNavProps) {
                 </Button>
                 <div className="absolute right-0 mt-2 w-48 rounded-md border bg-popover p-1 shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                   <Link 
-                    href="/profile" 
+                    href="/settings/profile" 
                     className="flex w-full items-center gap-2 rounded-sm px-3 py-2 text-sm hover:bg-accent"
                   >
                     <User className="h-4 w-4" />
