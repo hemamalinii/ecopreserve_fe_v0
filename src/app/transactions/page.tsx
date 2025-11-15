@@ -272,7 +272,7 @@ export default function TransactionsPage() {
                 {transactions.map((tx, index) => (
                   <tr 
                     key={tx.id} 
-                    className="border-b border-border hover:bg-muted/30 transition-colors"
+                    className="border-b border-border hover:bg-gold/5 transition-colors"
                   >
                     <td className="p-6">
                       <div className={`flex items-center gap-2 px-3 py-1.5 rounded-full border font-semibold text-xs w-fit ${getTypeBadge(tx.type)}`}>
@@ -308,7 +308,7 @@ export default function TransactionsPage() {
                         href={`https://etherscan.io/tx/${tx.txHash}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-2 text-sm font-mono text-primary hover:text-primary/80 transition-colors"
+                        className="flex items-center gap-2 text-sm font-mono text-primary hover:text-gold/80 transition-colors"
                       >
                         {tx.txHash.slice(0, 10)}...{tx.txHash.slice(-8)}
                         <ExternalLink className="h-4 w-4" />
@@ -324,7 +324,7 @@ export default function TransactionsPage() {
         {/* Pagination */}
         <div className="flex items-center justify-center gap-2 mt-8 animate-fade-in">
           <Button variant="outline" disabled>Previous</Button>
-          <Button variant="outline" className="bg-primary text-primary-foreground hover:bg-primary/90">1</Button>
+          <Button variant="outline" className="bg-primary text-primary-foreground hover:bg-gold/90">1</Button>
           <Button variant="outline">2</Button>
           <Button variant="outline">3</Button>
           <Button variant="outline">Next</Button>

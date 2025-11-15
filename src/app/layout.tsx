@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
-import { Inter } from 'next/font/google';
+import { Josefin_Slab, Montserrat } from 'next/font/google';
 import "./globals.css";
 import { AuthProvider } from "@/lib/auth-context";
 import { MainNav } from "@/components/main-nav";
 import { Toaster } from "@/components/ui/toaster";
 
-const inter = Inter({ subsets: ['latin'] });
+const josefinSlab = Josefin_Slab({ subsets: ['latin'], variable: '--font-josefin-slab' });
+const montserrat = Montserrat({ subsets: ['latin'], variable: '--font-montserrat' });
 
 export const metadata: Metadata = {
-  title: "EcoPreserve - Sustainable Carbon Credits Marketplace",
+  title: "carbonready.earth - Sustainable Carbon Credits Marketplace",
   description: "Trade and manage carbon credits with transparency and efficiency",
   icons: {
     icon: '/favicon.ico',
@@ -22,7 +23,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="h-full" suppressHydrationWarning>
-      <body className={`${inter.className} antialiased flex flex-col min-h-screen bg-background`}>
+      <body className={`${josefinSlab.variable} ${montserrat.variable} min-h-screen bg-background font-sans antialiased`}>
         <AuthProvider>
           <div className="flex flex-col min-h-screen">
             <MainNav />

@@ -83,7 +83,7 @@ export default function DashboardPage() {
                   <h3 className="font-bold text-lg mb-1">Tokenize New Project</h3>
                   <p className="text-sm text-muted-foreground">Submit a new carbon project</p>
                 </div>
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 group-hover:bg-primary/20 transition-colors">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 group-hover:bg-gold/20 transition-colors">
                   <Plus className="h-6 w-6 text-primary" />
                 </div>
               </div>
@@ -97,7 +97,7 @@ export default function DashboardPage() {
                   <h3 className="font-bold text-lg mb-1">Buy Credits</h3>
                   <p className="text-sm text-muted-foreground">Browse the marketplace</p>
                 </div>
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-accent/10 group-hover:bg-accent/20 transition-colors">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-accent/10 group-hover:bg-gold/20 transition-colors">
                   <ShoppingCart className="h-6 w-6 text-accent" />
                 </div>
               </div>
@@ -111,7 +111,7 @@ export default function DashboardPage() {
                   <h3 className="font-bold text-lg mb-1">View My Projects</h3>
                   <p className="text-sm text-muted-foreground">Manage your projects</p>
                 </div>
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-secondary/10 group-hover:bg-secondary/20 transition-colors">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-secondary/10 group-hover:bg-gold/20 transition-colors">
                   <FolderOpen className="h-6 w-6 text-secondary-foreground" />
                 </div>
               </div>

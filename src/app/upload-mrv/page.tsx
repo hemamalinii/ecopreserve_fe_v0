@@ -55,16 +55,16 @@ export default function UploadMRVPage() {
                 <h1 className="text-2xl font-bold text-primary">ClimateCreds</h1>
               </Link>
               <nav className="hidden md:flex items-center gap-6">
-                <Link href="/marketplace" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
+                <Link href="/marketplace" className="text-sm font-medium text-foreground hover:text-gold transition-colors">
                   Marketplace
                 </Link>
-                <Link href="/projects" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
+                <Link href="/projects" className="text-sm font-medium text-foreground hover:text-gold transition-colors">
                   My Projects
                 </Link>
-                <Link href="/portfolio" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
+                <Link href="/portfolio" className="text-sm font-medium text-foreground hover:text-gold transition-colors">
                   Portfolio
                 </Link>
-                <Link href="/transactions" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
+                <Link href="/transactions" className="text-sm font-medium text-foreground hover:text-gold transition-colors">
                   Transactions
                 </Link>
               </nav>

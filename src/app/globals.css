@@ -1,25 +1,32 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Slab:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700;800&family=Shadows+Into+Light&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
+  --color-background: #000000;
+  --color-foreground: #ffffff;
+  --color-primary: #3b82f6;
+  --color-primary-foreground: #ffffff;
+  --color-secondary: #1e293b;
+  --color-secondary-foreground: #e2e8f0;
+  --color-muted: #0f172a;
+  --color-muted-foreground: #94a3b8;
+  --color-accent: #10b981;
+  --color-accent-foreground: #ffffff;
+  --color-destructive: #ef4444;
+  --color-destructive-foreground: #ffffff;
+  --color-border: #1e293b;
+  --color-input: #1e293b;
+  --color-ring: #3b82f6;
+  --color-forest: #10b981;
+  --color-forest-foreground: #ffffff;
+  --color-gold: #fbbf24;
+  --color-gold-foreground: #000000;
+  --color-yellow: #fde047;
+  --color-yellow-foreground: #000000;
+  --radius: 0.5rem;
   
   /* Custom Colors */
   --forest: oklch(0.50 0.18 160);
@@ -32,60 +39,60 @@
 }
 
 :root {
-  --radius: 0.75rem;
+  --radius: 0.5rem;
   
   /* Modern & Clean Color Palette */
-  --background: oklch(0.99 0 0);
-  --foreground: oklch(0.15 0.02 260);
+  --background: #000000;
+  --foreground: #ffffff;
   
   /* Primary - Deep Blue */
-  --primary: oklch(0.39 0.17 264); /* #1E40AF */
-  --primary-foreground: oklch(0.98 0 0);
+  --primary: #3b82f6;
+  --primary-foreground: #ffffff;
   
   /* Secondary - Mint Green */
-  --secondary: oklch(0.72 0.18 160); /* #10B981 */
-  --secondary-foreground: oklch(0.15 0.02 260);
+  --secondary: #1e293b;
+  --secondary-foreground: #e2e8f0;
   
   /* Accent - Sky Blue */
-  --accent: oklch(0.75 0.18 232); /* #0EA5E9 */
-  --accent-foreground: oklch(0.98 0 0);
+  --accent: #10b981;
+  --accent-foreground: #ffffff;
   
   /* Muted - Cool Gray */
-  --muted: oklch(0.96 0.01 260);
-  --muted-foreground: oklch(0.45 0.02 260);
+  --muted: #0f172a;
+  --muted-foreground: #94a3b8;
   
   /* UI Elements */
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.15 0.02 260);
-  --border: oklch(0.90 0.01 260);
-  --input: oklch(0.90 0.01 260);
-  --ring: oklch(0.39 0.17 264);
+  --card: #1e293b;
+  --card-foreground: #e2e8f0;
+  --border: #1e293b;
+  --input: #1e293b;
+  --ring: #3b82f6;
 }
 
 .dark {
-  --background: oklch(0.12 0.01 240);
-  --foreground: oklch(0.95 0.01 260);
+  --background: #000000;
+  --foreground: #ffffff;
   
   /* Primary - Lighter Blue */
-  --primary: oklch(0.65 0.15 264);
-  --primary-foreground: oklch(0.12 0.01 240);
+  --primary: #3b82f6;
+  --primary-foreground: #ffffff;
   
   /* Secondary - Darker Mint */
-  --secondary: oklch(0.50 0.15 160);
-  --secondary-foreground: oklch(0.95 0.01 260);
+  --secondary: #1e293b;
+  --secondary-foreground: #e2e8f0;
   
   /* Accent - Brighter Sky Blue */
-  --accent: oklch(0.78 0.18 232);
-  --accent-foreground: oklch(0.12 0.01 240);
+  --accent: #10b981;
+  --accent-foreground: #ffffff;
   
-  --muted: oklch(0.18 0.01 260);
-  --muted-foreground: oklch(0.70 0.02 260);
+  --muted: #0f172a;
+  --muted-foreground: #94a3b8;
   
-  --card: oklch(0.15 0.01 240);
-  --card-foreground: oklch(0.95 0.01 260);
-  --border: oklch(0.25 0.02 260);
-  --input: oklch(0.25 0.02 260);
-  --ring: oklch(0.65 0.15 264);
+  --card: #1e293b;
+  --card-foreground: #e2e8f0;
+  --border: #1e293b;
+  --input: #1e293b;
+  --ring: #3b82f6;
 }
 
 @layer base {
@@ -114,7 +121,7 @@
   
   body {
     @apply bg-background text-foreground;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     font-feature-settings: 'cv11', 'ss01';
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -123,6 +130,21 @@
   
   h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
+    font-family: 'Josefin Slab', serif;
+  }
+
+  .font-josefin {
+    font-family: 'Josefin Slab', serif;
+    font-weight: 700;
+  }
+
+  .shadows-into-light-regular {
+    font-family: "Shadows Into Light", cursive;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
     letter-spacing: -0.025em;
     line-height: 1.2;
   }

@@ -11,10 +11,10 @@ import { toast } from '@/components/ui/use-toast';
 import { Progress } from '@/components/ui/progress';
 import { Check, ChevronLeft, ChevronRight, Leaf, Shield, TreePine, Users, Wallet, FileCheck } from 'lucide-react';
 
-type UserRole = 'landowner' | 'investor' | 'developer' | 'corporate' | '';
+import { User } from '@/lib/auth-context';
 
 interface OnboardingData {
-  role: UserRole;
+  role: User['role'];
   fullName: string;
   organization: string;
   phone: string;
@@ -130,12 +130,12 @@ export default function OnboardingPage() {
   const progress = (step / totalSteps) * 100;
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-background py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-3xl mx-auto">
         {/* Header */}
         <div className="mb-8 text-center">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Complete Your Profile</h1>
-          <p className="text-gray-600">Just a few more steps to get started with EcoPreserve</p>
+          <h1 className="text-3xl font-bold text-foreground mb-2">Complete Your Profile</h1>
+          <p className="text-muted-foreground">Just a few more steps to get started with carbonready.earth</p>
           
           {/* Progress Bar */}
           <div className="mt-6 w-full max-w-2xl mx-auto">
@@ -144,12 +144,12 @@ export default function OnboardingPage() {
               {steps.map((s) => (
                 <div 
                   key={s.id} 
-                  className={`flex flex-col items-center ${step >= s.id ? 'text-primary' : 'text-gray-400'}`}
+                  className={`flex flex-col items-center ${step >= s.id ? 'text-primary' : 'text-muted-foreground'}`}
                 >
                   <div className={`w-10 h-10 rounded-full flex items-center justify-center mb-2 transition-all ${
                     step > s.id ? 'bg-primary text-white' : 
-                    step === s.id ? 'bg-primary text-white ring-4 ring-primary/20' : 
-                    'bg-gray-200'
+                    step === s.id ? 'bg-primary text-white ring-4 ring-gold/20' : 
+                    'bg-muted'
                   }`}>
                     {step > s.id ? <Check className="h-5 w-5" /> : s.id}
                   </div>
@@ -326,99 +326,40 @@ export default function OnboardingPage() {
                   <FileCheck className="h-16 w-16 mx-auto text-primary mb-4" />
                   <h3 className="text-lg font-semibold mb-2">KYC Verification</h3>
                   <p className="text-sm text-muted-foreground mb-6">
-                    Verify your identity to access all features
+                    Complete identity verification to unlock all features
                   </p>
                 </div>
-                <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
-                  <h4 className="font-semibold mb-3">Why KYC?</h4>
-                  <ul className="space-y-2 text-sm text-gray-700">
+                <div className="bg-muted rounded-lg p-6">
+                  <h4 className="font-semibold text-foreground mb-3">Required Documents:</h4>
+                  <ul className="space-y-2 text-sm text-muted-foreground">
                     <li className="flex items-start">
-                      <Check className="h-5 w-5 text-blue-600 mr-2 flex-shrink-0 mt-0.5" />
-                      <span>Comply with regulatory requirements</span>
+                      <Check className="h-5 w-5 text-primary mr-2 flex-shrink-0 mt-0.5" />
+                      <span>Government-issued ID (Passport, Driver's License, or National ID)</span>
                     </li>
                     <li className="flex items-start">
-                      <Check className="h-5 w-5 text-blue-600 mr-2 flex-shrink-0 mt-0.5" />
-                      <span>Secure your account and transactions</span>
+                      <Check className="h-5 w-5 text-primary mr-2 flex-shrink-0 mt-0.5" />
+                      <span>Proof of address (Utility bill or bank statement)</span>
                     </li>
                     <li className="flex items-start">
-                      <Check className="h-5 w-5 text-blue-600 mr-2 flex-shrink-0 mt-0.5" />
-                      <span>Access premium features and higher limits</span>
+                      <Check className="h-5 w-5 text-primary mr-2 flex-shrink-0 mt-0.5" />
+                      <span>Business registration documents (for organizations)</span>
                     </li>
                   </ul>
                 </div>
-                <div className="space-y-3">
-                  <Button 
-                    className="w-full h-12"
-                    onClick={() => {
-                      setData({ ...data, kycVerified: true });
-                      toast({
-                        title: 'KYC Initiated',
-                        description: 'Your verification request has been submitted.',
-                        variant: 'default',
-                      });
-                    }}
-                  >
-                    Start KYC Verification
-                  </Button>
-                  <Button 
-                    variant="outline" 
-                    className="w-full h-12"
-                    onClick={() => setStep(5)}
-                  >
-                    Skip for Now
-                  </Button>
-                </div>
-                {data.kycVerified && (
-                  <div className="mt-4 p-3 bg-green-50 border border-green-200 rounded-md">
-                    <p className="text-sm text-green-800">
-                      ✓ KYC verification initiated. You'll receive an email with next steps.
+                {data.kycVerified ? (
+                  <div className="mt-4 p-3 bg-accent/10 border border-accent rounded-md">
+                    <p className="text-sm text-accent-foreground">
+                      ✓ KYC verification completed
                     </p>
                   </div>
+                ) : (
+                  <Button 
+                    className="w-full"
+                    onClick={() => setData({ ...data, kycVerified: true })}
+                  >
+                    Start KYC Process
+                  </Button>
                 )}
-              </div>
-            )}
-
-            {/* Step 5: Complete */}
-            {step === 5 && (
-              <div className="text-center py-12">
-                <div className="mb-6">
-                  <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Check className="h-10 w-10 text-green-600" />
-                  </div>
-                  <h3 className="text-2xl font-bold mb-2">You're All Set!</h3>
-                  <p className="text-muted-foreground">
-                    Your profile is complete. Let's explore your personalized dashboard.
-                  </p>
-                </div>
-                <div className="bg-gray-50 rounded-lg p-6 text-left max-w-md mx-auto">
-                  <h4 className="font-semibold mb-3">Profile Summary</h4>
-                  <dl className="space-y-2 text-sm">
-                    <div className="flex justify-between">
-                      <dt className="text-gray-600">Role:</dt>
-                      <dd className="font-medium capitalize">{data.role}</dd>
-                    </div>
-                    <div className="flex justify-between">
-                      <dt className="text-gray-600">Name:</dt>
-                      <dd className="font-medium">{data.fullName}</dd>
-                    </div>
-                    {data.organization && (
-                      <div className="flex justify-between">
-                        <dt className="text-gray-600">Organization:</dt>
-                        <dd className="font-medium">{data.organization}</dd>
-                      </div>
-                    )}
-                    <div className="flex justify-between">
-                      <dt className="text-gray-600">Country:</dt>
-                      <dd className="font-medium">{data.country}</dd>
-                    </div>
-                    <div className="flex justify-between">
-                      <dt className="text-gray-600">Wallet:</dt>
-                      <dd className="font-medium text-xs">
-                        {data.walletAddress.slice(0, 6)}...{data.walletAddress.slice(-4)}
-                      </dd>
-                    </div>
-                  </dl>
-                </div>
               </div>
             )}
           </CardContent>
@@ -463,15 +404,15 @@ function RoleCard({ icon, title, description, selected, onClick }: RoleCardProps
       className={`p-6 border-2 rounded-lg text-left transition-all hover:shadow-md ${
         selected
           ? 'border-primary bg-primary/5 shadow-md'
-          : 'border-gray-200 hover:border-gray-300'
+          : 'border-border hover:border-gold/50'
       }`}
     >
       <div className="flex flex-col h-full">
-        <div className={`mb-3 ${selected ? 'text-primary' : 'text-gray-500'}`}>
+        <div className={`mb-3 ${selected ? 'text-primary' : 'text-muted-foreground'}`}>
           {icon}
         </div>
-        <h3 className="font-semibold text-gray-900 mb-2">{title}</h3>
-        <p className="text-sm text-gray-600 flex-grow">{description}</p>
+        <h3 className="font-semibold text-foreground mb-2">{title}</h3>
+        <p className="text-sm text-muted-foreground flex-grow">{description}</p>
         {selected && (
           <div className="mt-3 flex items-center text-primary text-sm font-medium">
             <Check className="h-4 w-4 mr-1" /> Selected

@@ -22,7 +22,7 @@ export function MainNav({ showHomeLink = true }: MainNavProps) {
   }, []);
 
   const isActive = (href: string) => {
-    return pathname === href ? 'text-primary font-semibold' : 'text-foreground hover:text-primary transition-colors';
+    return pathname === href ? 'text-primary font-semibold' : 'text-foreground hover:text-gold transition-colors';
   };
 
   const handleLogout = () => {
@@ -55,7 +55,7 @@ export function MainNav({ showHomeLink = true }: MainNavProps) {
         {/* Left side - Logo and Navigation */}
         <div className="flex items-center gap-8">
           <Link href="/" className="flex items-center space-x-2">
-            <span className="text-xl font-bold text-primary">EcoPreserve</span>
+            <span className="text-2xl font-bold text-primary shadows-into-light-regular">carbon<span className="text-gold font-extrabold text-2xl shadows-into-light-regular">ready</span>.<span className="text-accent font-extrabold text-2xl shadows-into-light-regular">earth</span></span>
           </Link>
           
           <nav className="hidden items-center space-x-6 md:flex">
@@ -63,7 +63,7 @@ export function MainNav({ showHomeLink = true }: MainNavProps) {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary ${isActive(item.href)}`}
+                className={`flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-gold ${isActive(item.href)}`}
               >
                 <span className="hidden sm:inline">{item.icon}</span>
                 {item.name}
@@ -83,7 +83,7 @@ export function MainNav({ showHomeLink = true }: MainNavProps) {
             ) : (
               <Link 
                 href="/auth/login" 
-                className="flex items-center gap-1 text-muted-foreground hover:text-foreground"
+                className="flex items-center gap-1 text-muted-foreground hover:text-gold"
               >
                 <LogIn className="h-4 w-4" />
                 <span>Guest (Sign In)</span>
@@ -111,14 +111,14 @@ export function MainNav({ showHomeLink = true }: MainNavProps) {
                 <div className="absolute right-0 mt-2 w-48 rounded-md border bg-popover p-1 shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                   <Link 
                     href="/settings/profile" 
-                    className="flex w-full items-center gap-2 rounded-sm px-3 py-2 text-sm hover:bg-accent"
+                    className="flex w-full items-center gap-2 rounded-sm px-3 py-2 text-sm hover:bg-gold/10"
                   >
                     <User className="h-4 w-4" />
                     <span>My Profile</span>
                   </Link>
                   <button 
                     onClick={handleLogout}
-                    className="flex w-full items-center gap-2 rounded-sm px-3 py-2 text-sm hover:bg-accent text-destructive"
+                    className="flex w-full items-center gap-2 rounded-sm px-3 py-2 text-sm hover:bg-gold/10 text-destructive"
                   >
                     <LogOut className="h-4 w-4" />
                     <span>Sign Out</span>

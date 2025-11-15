@@ -120,7 +120,7 @@ export default function WalletOnboardingPage() {
                     className={`group relative p-6 rounded-2xl border-2 text-left transition-all hover:shadow-lg ${
                       selectedWallet === wallet.id
                         ? "border-primary bg-primary/5 shadow-lg"
-                        : "border-border hover:border-primary/50"
+                        : "border-border hover:border-gold/50"
                     }`}
                   >
                     <div className="flex items-start gap-4">

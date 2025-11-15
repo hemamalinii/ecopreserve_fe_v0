@@ -96,7 +96,7 @@ export function RetirementModal({ isOpen, onClose, credit, onRetire }: Retiremen
               </div>
               <button
                 onClick={onClose}
-                className="p-1.5 rounded-full hover:bg-background/50 transition-colors"
+                className="p-1.5 rounded-full hover:bg-gold/10 transition-colors"
                 aria-label="Close modal"
               >
                 <X className="h-5 w-5" />
@@ -161,7 +161,7 @@ export function RetirementModal({ isOpen, onClose, credit, onRetire }: Retiremen
                 value={purpose}
                 onChange={(e) => setPurpose(e.target.value)}
                 placeholder="E.g., Carbon neutral event, Corporate sustainability goal, etc."
-                className="w-full px-3 py-2 border rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary"
+                className="w-full px-3 py-2 border rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-gold/50 focus:border-gold"
               />
               <p className="text-xs text-muted-foreground">
                 This will be included in your retirement certificate

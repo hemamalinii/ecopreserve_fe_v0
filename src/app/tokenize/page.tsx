@@ -210,9 +210,9 @@ export default function TokenizePage() {
                   MRV Documents <span className="text-primary">*</span>
                 </label>
                 <Link href="/upload-mrv">
-                  <Card className="p-6 border-2 border-dashed border-primary/30 hover:border-primary/50 hover:bg-primary/5 transition-all cursor-pointer group">
+                  <Card className="p-6 border-2 border-dashed border-primary/30 hover:border-gold/50 hover:bg-gold/5 transition-all cursor-pointer group">
                     <div className="flex flex-col items-center justify-center text-center">
-                      <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors mb-4">
+                      <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 group-hover:bg-gold/20 transition-colors mb-4">
                         <Upload className="h-8 w-8 text-primary" />
                       </div>
                       <p className="font-semibold mb-1">Upload MRV Documents</p>

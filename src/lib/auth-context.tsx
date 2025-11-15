@@ -3,7 +3,7 @@
 import { createContext, useContext, ReactNode, useState, useEffect, useCallback } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 
-type UserRole = 'landowner' | 'investor' | 'developer' | '';
+type UserRole = 'landowner' | 'investor' | 'developer' | 'corporate' | '';
 
 export interface User {
   id: string;

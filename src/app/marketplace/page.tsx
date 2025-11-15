@@ -186,7 +186,7 @@ export default function MarketplacePage() {
                   </div>
                 </div>
                 <div className="p-6">
-                  <h3 className="text-lg font-bold mb-2 group-hover:text-primary transition-colors">{project.title}</h3>
+                  <h3 className="text-lg font-bold mb-2 group-hover:text-gold transition-colors">{project.title}</h3>
                   <div className="flex items-center gap-2 mb-4">
                     <span className="text-xs font-semibold px-2 py-1 rounded-full bg-secondary/20 text-secondary-foreground">
                       {project.type}
@@ -217,7 +217,7 @@ export default function MarketplacePage() {
         {/* Pagination */}
         <div className="flex items-center justify-center gap-2 mt-12 animate-fade-in">
           <Button variant="outline" disabled>Previous</Button>
-          <Button variant="outline" className="bg-primary text-primary-foreground hover:bg-primary/90">1</Button>
+          <Button variant="outline" className="bg-primary text-primary-foreground hover:bg-gold/90">1</Button>
           <Button variant="outline">2</Button>
           <Button variant="outline">3</Button>
           <Button variant="outline">Next</Button>

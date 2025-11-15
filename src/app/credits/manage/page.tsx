@@ -93,9 +93,9 @@ export default function ManageCreditsPage() {
       case 'transferred':
         return 'bg-purple-100 text-purple-700 border-purple-200';
       case 'retired':
-        return 'bg-gray-100 text-gray-700 border-gray-200';
+        return 'bg-muted text-muted-foreground border-border';
       default:
-        return 'bg-gray-100 text-gray-700 border-gray-200';
+        return 'bg-muted text-muted-foreground border-border';
     }
   };
 
@@ -202,7 +202,7 @@ export default function ManageCreditsPage() {
           </Card>
           <Card className="p-6 shadow-lg">
             <p className="text-sm text-muted-foreground font-medium mb-1">Retired</p>
-            <p className="text-3xl font-bold text-gray-600">
+            <p className="text-3xl font-bold text-muted-foreground">
               {credits.filter(c => c.status === 'retired').length}
             </p>
           </Card>
@@ -411,7 +411,7 @@ export default function ManageCreditsPage() {
                   Retiring credits is permanent and cannot be undone. Retired credits cannot be transferred or sold.
                 </p>
               </div>
-              <div className="bg-gray-50 rounded-lg p-4 mb-4">
+              <div className="bg-muted/50 rounded-lg p-4 mb-4">
                 <p className="text-sm font-semibold mb-2">Credit Details:</p>
                 <p className="text-sm text-muted-foreground">Token: {selectedCredit.tokenId}</p>
                 <p className="text-sm text-muted-foreground">

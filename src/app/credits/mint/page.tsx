@@ -136,12 +136,12 @@ export default function MintCreditsPage() {
           {[1, 2, 3].map((s) => (
             <div key={s} className="flex items-center">
               <div className={`flex items-center justify-center w-10 h-10 rounded-full border-2 ${
-                step >= s ? 'bg-primary border-primary text-white' : 'border-gray-300 text-gray-400'
+                step >= s ? 'bg-primary border-primary text-white' : 'border-muted text-muted-foreground'
               }`}>
                 {step > s ? <Check className="h-5 w-5" /> : s}
               </div>
               {s < 3 && (
-                <div className={`w-24 h-0.5 ${step > s ? 'bg-primary' : 'bg-gray-300'}`} />
+                <div className={`w-24 h-0.5 ${step > s ? 'bg-primary' : 'bg-muted'}`} />
               )}
             </div>
           ))}
@@ -172,10 +172,10 @@ export default function MintCreditsPage() {
                     className={`p-6 border-2 rounded-lg text-left transition-all hover:shadow-md ${
                       formData.creditType === type.id
                         ? 'border-primary bg-primary/5 shadow-md'
-                        : 'border-gray-200 hover:border-gray-300'
+                        : 'border-border hover:border-gold/50'
                     }`}
                   >
-                    <div className={`mb-3 ${formData.creditType === type.id ? 'text-primary' : 'text-gray-500'}`}>
+                    <div className={`mb-3 ${formData.creditType === type.id ? 'text-primary' : 'text-muted-foreground'}`}>
                       {type.icon}
                     </div>
                     <h3 className="font-semibold text-lg mb-2">{type.name}</h3>
@@ -291,7 +291,7 @@ export default function MintCreditsPage() {
                     <Check className="h-5 w-5 text-blue-600" />
                     What happens next?
                   </h4>
-                  <ul className="space-y-2 text-sm text-gray-700">
+                  <ul className="space-y-2 text-sm text-muted-foreground">
                     <li className="flex items-start">
                       <span className="mr-2">•</span>
                       <span>Credits will be minted on the blockchain</span>

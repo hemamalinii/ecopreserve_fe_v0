@@ -146,7 +146,7 @@ export function BuyCreditsModal({ isOpen, onClose, project, onPurchase }: BuyCre
               className={`p-4 rounded-xl border-2 transition-all ${
                 paymentMethod === "crypto"
                   ? "border-primary bg-primary/10"
-                  : "border-border hover:border-primary/50"
+                  : "border-border hover:border-gold/50"
               }`}
             >
               <div className="flex items-center justify-center gap-2 mb-2">

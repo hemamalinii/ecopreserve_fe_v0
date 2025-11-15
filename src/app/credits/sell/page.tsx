@@ -148,12 +148,12 @@ export default function SellCreditsPage() {
           {[1, 2, 3].map((s) => (
             <div key={s} className="flex items-center">
               <div className={`flex items-center justify-center w-10 h-10 rounded-full border-2 ${
-                step >= s ? 'bg-primary border-primary text-white' : 'border-gray-300 text-gray-400'
+                step >= s ? 'bg-primary border-primary text-white' : 'border-muted text-muted-foreground'
               }`}>
                 {step > s ? <Check className="h-5 w-5" /> : s}
               </div>
               {s < 3 && (
-                <div className={`w-24 h-0.5 ${step > s ? 'bg-primary' : 'bg-gray-300'}`} />
+                <div className={`w-24 h-0.5 ${step > s ? 'bg-primary' : 'bg-muted'}`} />
               )}
             </div>
           ))}
@@ -190,7 +190,7 @@ export default function SellCreditsPage() {
                     className={`w-full p-6 border-2 rounded-lg text-left transition-all hover:shadow-md ${
                       formData.creditId === credit.id
                         ? 'border-primary bg-primary/5 shadow-md'
-                        : 'border-gray-200 hover:border-gray-300'
+                        : 'border-border hover:border-gold/50'
                     }`}
                   >
                     <div className="flex items-start justify-between">

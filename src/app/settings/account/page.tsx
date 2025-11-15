@@ -157,14 +157,14 @@ export default function AccountPage() {
         </CardContent>
       </Card>
 
-      <Card className="border-red-200 bg-red-50">
+      <Card className="border-destructive bg-destructive/10">
         <CardHeader>
-          <CardTitle className="text-red-600">Danger Zone</CardTitle>
+          <CardTitle className="text-destructive">Danger Zone</CardTitle>
           <CardDescription>Irreversible and destructive actions</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
-            <div className="flex flex-col justify-between rounded-lg border border-red-200 bg-white p-4 sm:flex-row sm:items-center">
+            <div className="flex flex-col justify-between rounded-lg border border-destructive bg-card p-4 sm:flex-row sm:items-center">
               <div className="space-y-1">
                 <h4 className="font-medium">Deactivate Account</h4>
                 <p className="text-sm text-muted-foreground">
@@ -175,14 +175,14 @@ export default function AccountPage() {
                 Deactivate Account
               </Button>
             </div>
-            <div className="flex flex-col justify-between rounded-lg border border-red-200 bg-white p-4 sm:flex-row sm:items-center">
+            <div className="flex flex-col justify-between rounded-lg border border-destructive bg-card p-4 sm:flex-row sm:items-center">
               <div className="space-y-1">
                 <h4 className="font-medium">Delete Account</h4>
                 <p className="text-sm text-muted-foreground">
                   Permanently delete your account and all of your data.
                 </p>
               </div>
-              <Button variant="outline" className="mt-4 border-red-500 text-red-600 hover:bg-red-50 sm:mt-0">
+              <Button variant="outline" className="mt-4 border-destructive text-destructive hover:bg-destructive/10 sm:mt-0">
                 Delete Account
               </Button>
             </div>

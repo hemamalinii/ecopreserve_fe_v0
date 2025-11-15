@@ -137,7 +137,7 @@ export function ListSaleModal({ isOpen, onClose, project, onList }: ListSaleModa
         {/* Close Button */}
         <button
           onClick={handleClose}
-          className="absolute top-4 right-4 p-2 rounded-full hover:bg-muted transition-colors"
+          className="absolute top-4 right-4 p-2 rounded-full hover:bg-gold/10 transition-colors"
           disabled={isProcessing}
         >
           <X className="h-5 w-5" />

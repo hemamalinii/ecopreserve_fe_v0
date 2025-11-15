@@ -86,10 +86,10 @@ export default function ProjectDetailsPage({ params }: { params: { id: string } 
                   </div>
                   <h1 className="text-4xl font-bold text-white mb-2">{project.title}</h1>
                   <div className="flex items-center gap-3">
-                    <span className="text-sm font-semibold px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm text-white">
+                    <span className="text-sm font-semibold px-3 py-1 rounded-full bg-card/80 backdrop-blur-sm text-card-foreground">
                       {project.type}
                     </span>
-                    <span className="text-sm font-semibold px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm text-white">
+                    <span className="text-sm font-semibold px-3 py-1 rounded-full bg-card/80 backdrop-blur-sm text-card-foreground">
                       Vintage {project.vintage}
                     </span>
                   </div>
@@ -104,7 +104,7 @@ export default function ProjectDetailsPage({ params }: { params: { id: string } 
                 className={`px-6 py-3 font-semibold text-sm border-b-2 transition-colors ${
                   activeTab === "overview"
                     ? "border-primary text-primary"
-                    : "border-transparent text-muted-foreground hover:text-foreground"
+                    : "border-transparent text-muted-foreground hover:text-gold"
                 }`}
               >
                 Overview
@@ -114,7 +114,7 @@ export default function ProjectDetailsPage({ params }: { params: { id: string } 
                 className={`px-6 py-3 font-semibold text-sm border-b-2 transition-colors ${
                   activeTab === "documentation"
                     ? "border-primary text-primary"
-                    : "border-transparent text-muted-foreground hover:text-foreground"
+                    : "border-transparent text-muted-foreground hover:text-gold"
                 }`}
               >
                 Documentation
@@ -124,7 +124,7 @@ export default function ProjectDetailsPage({ params }: { params: { id: string } 
                 className={`px-6 py-3 font-semibold text-sm border-b-2 transition-colors ${
                   activeTab === "verification"
                     ? "border-primary text-primary"
-                    : "border-transparent text-muted-foreground hover:text-foreground"
+                    : "border-transparent text-muted-foreground hover:text-gold"
                 }`}
               >
                 Verification Timeline

@@ -187,7 +187,7 @@ export default function PortfolioPage() {
             {holdings.map((holding, index) => (
               <div 
                 key={holding.id}
-                className="p-5 rounded-xl bg-muted/30 hover:bg-muted/50 transition-colors"
+                className="p-5 rounded-xl bg-muted/30 hover:bg-gold/20 transition-colors"
               >
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex-1">
