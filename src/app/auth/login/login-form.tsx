@@ -68,15 +68,15 @@ export function LoginForm() {
 
         <Card className="p-8">
           <div className="text-center mb-8">
-            <h1 className="text-2xl font-bold mb-2">Welcome Back</h1>
-            <p className="text-muted-foreground">
+            <h1 className="text-2xl font-black mb-2" style={{ fontFamily: 'var(--font-montserrat), sans-serif' }}>Welcome Back</h1>
+            <p className="text-muted-foreground font-medium" style={{ fontFamily: 'var(--font-montserrat), sans-serif' }}>
               Sign in to your account to continue
             </p>
           </div>
 
           <form onSubmit={handleEmailLogin} className="space-y-6">
             <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="email" className="font-semibold" style={{ fontFamily: 'var(--font-montserrat), sans-serif' }}>Email</Label>
               <div className="relative">
                 <Mail className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
                 <Input
@@ -93,7 +93,7 @@ export function LoginForm() {
 
             <div className="space-y-2">
               <div className="flex items-center justify-between">
-                <Label htmlFor="password">Password</Label>
+                <Label htmlFor="password" className="font-semibold" style={{ fontFamily: 'var(--font-montserrat), sans-serif' }}>Password</Label>
                 <Link
                   href="/auth/forgot-password"
                   className="text-sm text-primary hover:underline"
@@ -116,7 +116,7 @@ export function LoginForm() {
               </div>
             </div>
 
-            <Button type="submit" className="w-full" disabled={isLoading}>
+            <Button type="submit" className="w-full font-bold" disabled={isLoading} style={{ fontFamily: 'var(--font-montserrat), sans-serif' }}>
               {isLoading ? 'Signing in...' : 'Sign In'}
             </Button>
           </form>
@@ -125,7 +125,8 @@ export function LoginForm() {
             Don't have an account?{' '}
             <Link
               href="/auth/signup"
-              className="font-medium text-primary hover:underline"
+              className="font-bold text-primary hover:underline"
+              style={{ fontFamily: 'var(--font-montserrat), sans-serif' }}
             >
               Sign up
             </Link>

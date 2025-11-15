@@ -121,7 +121,7 @@
   
   body {
     @apply bg-background text-foreground;
-    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: var(--font-montserrat);
     font-feature-settings: 'cv11', 'ss01';
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -130,11 +130,11 @@
   
   h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
-    font-family: 'Josefin Slab', serif;
+    font-family: 'Josefin Slab', 'Montserrat';
   }
 
   .font-josefin {
-    font-family: 'Josefin Slab', serif;
+    font-family: 'Josefin Slab', 'Montserrat';
     font-weight: 700;
   }
 
