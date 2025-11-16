@@ -36,12 +36,12 @@ export default function AboutPage() {
       // STAGE 1 (0-30%): Content 1 fades, Content 2 appears EARLY
       tl.to(content1Ref.current, {
         opacity: 0,
-        y: -30,
+        y: -50,
         duration: 0.5,
       })
       .fromTo(content2Ref.current, {
         opacity: 0,
-        y: 30,
+        y: 50,
       }, {
         opacity: 1,
         y: 0,
@@ -74,12 +74,12 @@ export default function AboutPage() {
       })
       .to(content2Ref.current, {
         opacity: 0,
-        y: -20,
+        y: -40,
         duration: 0.6,
       }, '-=0.7')
       .fromTo(content3Ref.current, {
         opacity: 0,
-        y: 30,
+        y: 50,
       }, {
         opacity: 1,
         y: 0,
@@ -89,7 +89,7 @@ export default function AboutPage() {
       // STAGE 3 (70-100%): Smooth fade transition to full tree
       .to(content3Ref.current, {
         opacity: 0,
-        y: -20,
+        y: -40,
         duration: 0.6,
       })
       .to(leafRef.current, {
@@ -111,7 +111,7 @@ export default function AboutPage() {
       // Content 4 fades in with tree
       .fromTo(content4Ref.current, {
         opacity: 0,
-        y: 50,
+        y: 70,
       }, {
         opacity: 1,
         y: 0,
@@ -152,32 +152,32 @@ export default function AboutPage() {
         ref={content1Ref}
         className="absolute inset-0 flex flex-col items-center justify-center text-white z-20 px-8"
       >
-        <h1 className="text-5xl md:text-7xl font-serif text-center mb-16">
-          A Simpler Way Forward
+        <h1 className="text-6xl md:text-8xl font-josefin text-center mb-16">
+          <span className="font-bold">A Simpler Way Forward</span>
         </h1>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl w-full mb-8">
           <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8 hover:bg-white/10 transition-all">
-            <p className="text-gray-200 text-lg leading-relaxed">
-              Climate action shouldn't feel complicated. We remove confusion and replace it with clarity.
+            <p className="text-gray-200 text-xl leading-relaxed font-josefin font-semibold">
+              Climate action shouldn't feel <span className="font-bold text-blue-400">complicated</span>. We remove confusion and replace it with <span className="font-bold text-green-400">clarity</span>.
             </p>
           </div>
           
           <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8 hover:bg-white/10 transition-all">
-            <p className="text-gray-200 text-lg leading-relaxed">
-              One clean interface. One transparent system. One mission.
+            <p className="text-gray-200 text-xl leading-relaxed font-josefin font-semibold">
+              <span className="font-bold text-blue-400">One clean interface</span>. <span className="font-bold text-green-400">One transparent system</span>. <span className="font-bold text-blue-400">One mission</span>.
             </p>
           </div>
           
           <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8 hover:bg-white/10 transition-all">
-            <p className="text-gray-200 text-lg leading-relaxed">
-              We make understanding, buying, and using carbon credits effortless for everyone.
+            <p className="text-gray-200 text-xl leading-relaxed font-josefin font-semibold">
+              We make <span className="font-bold text-green-400">understanding, buying, and using carbon credits effortless</span> for everyone.
             </p>
           </div>
         </div>
         
-        <p className="text-gray-400 text-center text-lg max-w-3xl">
-          Everything you see is exactly what matters—nothing else in your way.
+        <p className="text-gray-400 text-center text-xl max-w-3xl font-josefin font-bold">
+          Everything you see is exactly what matters—<span className="text-blue-400 font-bold">nothing else in your way</span>.
         </p>
       </div>
 
@@ -186,32 +186,32 @@ export default function AboutPage() {
         ref={content2Ref}
         className="absolute inset-0 flex flex-col items-center justify-center text-white z-30 px-8 opacity-0"
       >
-        <h1 className="text-5xl md:text-7xl font-serif text-center mb-16">
-          The Journey of a Carbon Credit
+        <h1 className="text-6xl md:text-8xl font-josefin text-center mb-16">
+          <span className="font-bold">The Journey of a Carbon Credit</span>
         </h1>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl w-full mb-8">
           <div className="bg-black/60 backdrop-blur-md border border-white/20 rounded-3xl p-8 hover:bg-black/70 transition-all shadow-2xl">
-            <p className="text-gray-100 text-lg leading-relaxed">
-              Behind every credit is a story—tracked from project to verification.
+            <p className="text-gray-100 text-xl leading-relaxed font-josefin font-semibold">
+              Behind every credit is a <span className="font-bold text-green-400">story</span>—tracked from <span className="font-bold text-blue-400">project to verification</span>.
             </p>
           </div>
           
           <div className="bg-black/60 backdrop-blur-md border border-white/20 rounded-3xl p-8 hover:bg-black/70 transition-all shadow-2xl">
-            <p className="text-gray-100 text-lg leading-relaxed">
-              Verified data becomes a secure, traceable digital asset on the blockchain.
+            <p className="text-gray-100 text-xl leading-relaxed font-josefin font-semibold">
+              Verified data becomes a <span className="font-bold text-green-400">secure, traceable digital asset</span> on the blockchain.
             </p>
           </div>
           
           <div className="bg-black/60 backdrop-blur-md border border-white/20 rounded-3xl p-8 hover:bg-black/70 transition-all shadow-2xl">
-            <p className="text-gray-100 text-lg leading-relaxed">
-              Anyone can explore it, buy it, or retire it in just a few clicks.
+            <p className="text-gray-100 text-xl leading-relaxed font-josefin font-semibold">
+              Anyone can <span className="font-bold text-blue-400">explore it, buy it, or retire it</span> in just a few clicks.
             </p>
           </div>
         </div>
         
-        <p className="text-gray-300 text-center text-lg max-w-3xl">
-          What used to take weeks now happens in one smooth, transparent workflow.
+        <p className="text-gray-300 text-center text-xl max-w-3xl font-josefin font-bold">
+          What used to take <span className="text-green-400 font-bold">weeks</span> now happens in <span className="text-blue-400 font-bold">one smooth, transparent workflow</span>.
         </p>
       </div>
 
@@ -220,32 +220,32 @@ export default function AboutPage() {
         ref={content3Ref}
         className="absolute inset-0 flex flex-col items-center justify-center text-white z-30 px-8 opacity-0"
       >
-        <h1 className="text-5xl md:text-7xl font-serif text-center mb-16">
-          Clarity Over Complexity
+        <h1 className="text-6xl md:text-8xl font-josefin text-center mb-16">
+          <span className="font-bold">Clarity Over Complexity</span>
         </h1>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl w-full mb-8">
           <div className="bg-black/60 backdrop-blur-md border border-white/20 rounded-3xl p-8 hover:bg-black/70 transition-all shadow-2xl">
-            <p className="text-gray-100 text-lg leading-relaxed">
-              Today's markets are scattered and difficult to follow.
+            <p className="text-gray-100 text-xl leading-relaxed font-josefin font-semibold">
+              Today's markets are <span className="font-bold text-blue-400">scattered and difficult to follow</span>.
             </p>
           </div>
           
           <div className="bg-black/60 backdrop-blur-md border border-white/20 rounded-3xl p-8 hover:bg-black/70 transition-all shadow-2xl">
-            <p className="text-gray-100 text-lg leading-relaxed">
-              We bring verification, tokenization, purchase, and retirement together.
+            <p className="text-gray-100 text-xl leading-relaxed font-josefin font-semibold">
+              We bring <span className="font-bold text-green-400">verification, tokenization, purchase, and retirement together</span>.
             </p>
           </div>
           
           <div className="bg-black/60 backdrop-blur-md border border-white/20 rounded-3xl p-8 hover:bg-black/70 transition-all shadow-2xl">
-            <p className="text-gray-100 text-lg leading-relaxed">
-              You see exactly where a credit came from—and the impact you create.
+            <p className="text-gray-100 text-xl leading-relaxed font-josefin font-semibold">
+              You see <span className="font-bold text-blue-400">exactly where a credit came from</span>—and the <span className="font-bold text-green-400">impact you create</span>.
             </p>
           </div>
         </div>
         
-        <p className="text-gray-300 text-center text-lg max-w-3xl">
-          Nothing hidden. Nothing confusing. Just clear, reliable climate action.
+        <p className="text-gray-300 text-center text-xl max-w-3xl font-josefin font-bold">
+          <span className="text-blue-400 font-bold">Nothing hidden</span>. <span className="text-blue-400 font-bold">Nothing confusing</span>. Just <span className="text-green-400 font-bold">clear, reliable climate action</span>.
         </p>
       </div>
 
@@ -287,40 +287,40 @@ export default function AboutPage() {
 
         {/* CONTENT 4: Built for Everyone, Designed for You */}
         <div ref={content4Ref} className="absolute inset-0 flex flex-col items-center justify-center text-white px-8 opacity-0">
-          <h1 className="text-5xl md:text-7xl font-serif text-center mb-16">
-            Built for Everyone, Designed for You
+          <h1 className="text-6xl md:text-8xl font-josefin text-center mb-16">
+            <span className="font-bold">Built for Everyone, Designed for You</span>
           </h1>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl w-full mb-8">
             <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8 hover:bg-white/10 transition-all">
-              <p className="text-gray-200 text-lg leading-relaxed">
-                Individuals can offset footprints easily and confidently.
+              <p className="text-gray-200 text-xl leading-relaxed font-josefin font-semibold">
+                Individuals can <span className="font-bold text-green-400">offset footprints easily and confidently</span>.
               </p>
             </div>
             
             <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8 hover:bg-white/10 transition-all">
-              <p className="text-gray-200 text-lg leading-relaxed">
-                Companies get verified data, impact dashboards, and compliance reporting.
+              <p className="text-gray-200 text-xl leading-relaxed font-josefin font-semibold">
+                Companies get <span className="font-bold text-blue-400">verified data, impact dashboards, and compliance reporting</span>.
               </p>
             </div>
             
             <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8 hover:bg-white/10 transition-all">
-              <p className="text-gray-200 text-lg leading-relaxed">
-                Developers get streamlined onboarding, MRV uploads, and minting tools.
+              <p className="text-gray-200 text-xl leading-relaxed font-josefin font-semibold">
+                Developers get <span className="font-bold text-green-400">streamlined onboarding, MRV uploads, and minting tools</span>.
               </p>
             </div>
           </div>
           
-          <p className="text-gray-400 text-center text-lg max-w-3xl mb-10">
-            Every path is guided—so you can focus on making an impact, not navigating complexity.
+          <p className="text-gray-400 text-center text-xl max-w-3xl mb-10 font-josefin font-bold">
+            Every path is <span className="text-blue-400 font-bold">guided</span>—so you can focus on <span className="text-green-400 font-bold">making an impact</span>, not navigating complexity.
           </p>
 
-          <Link
-            href="/"
-            className="inline-block px-10 py-4 bg-gradient-to-r from-cyan-500 to-teal-500 text-white font-semibold rounded-full hover:from-cyan-600 hover:to-teal-600 transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
+          <button
+            onClick={() => window.location.href = '/auth/login'}
+            className="inline-block px-12 py-6 bg-blue-500 text-white font-josefin font-bold text-xl rounded-full hover:bg-blue-600 transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
           >
             Get Started
-          </Link>
+          </button>
         </div>
       </div>
     </div>
