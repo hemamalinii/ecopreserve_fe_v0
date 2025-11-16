@@ -1,51 +1,135 @@
-import Link from 'next/link';
+"use client";
+
+import SectionContainer from "@/components/landing/SectionContainer";
+import SubCard from "@/components/landing/SubCard";
+import Conclusion from "@/components/landing/Conclusion";
+import Link from "next/link";
 
 export default function AboutPage() {
   return (
-    <div className="container mx-auto px-4 py-12 max-w-4xl">
-      <h1 className="text-4xl font-bold mb-8 text-center">About ClimateCreds</h1>
-      
-      <section className="mb-12">
-        <h2 className="text-2xl font-semibold mb-4">What are Carbon Credits?</h2>
-        <p className="mb-4 text-muted-foreground">
-          Carbon credits are tradable certificates that represent the reduction of one metric ton of carbon dioxide or its equivalent in other greenhouse gases. They are a key tool in the fight against climate change, enabling businesses and individuals to offset their carbon footprint by investing in environmental projects around the world.
-        </p>
-      </section>
+    <div className="min-h-screen w-full bg-background">
 
-      <section className="mb-12">
-        <h2 className="text-2xl font-semibold mb-4">How It Works</h2>
-        <div className="grid md:grid-cols-3 gap-6">
-          <div className="bg-card p-6 rounded-lg shadow-md border">
-            <h3 className="font-semibold mb-2">1. Create Projects</h3>
-            <p className="text-muted-foreground">Project developers create and register carbon reduction projects that meet international standards.</p>
-          </div>
-          <div className="bg-card p-6 rounded-lg shadow-md border">
-            <h3 className="font-semibold mb-2">2. Verification</h3>
-            <p className="text-muted-foreground">Independent third parties verify the carbon reductions achieved by each project.</p>
-          </div>
-          <div className="bg-card p-6 rounded-lg shadow-md border">
-            <h3 className="font-semibold mb-2">3. Trade & Retire</h3>
-            <p className="text-muted-foreground">Businesses and individuals can purchase and retire credits to offset their emissions.</p>
-          </div>
+      {/* SECTION 1 */}
+      <SectionContainer title="A Simpler Way Forward">
+
+        <div className="grid md:grid-cols-3 gap-10 max-w-6xl mx-auto">
+
+          <SubCard delay={0.1}>
+            Climate action shouldn’t feel complicated.  
+            We remove confusion and replace it with clarity.
+          </SubCard>
+
+          <SubCard delay={0.2}>
+            One clean interface.  
+            One transparent system.  
+            One mission.
+          </SubCard>
+
+          <SubCard delay={0.3}>
+            We make understanding, buying, and using carbon credits effortless for everyone.
+          </SubCard>
+
         </div>
-      </section>
 
-      <section className="mb-12">
-        <h2 className="text-2xl font-semibold mb-4">Why Choose Our Platform?</h2>
-        <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
-          <li>Transparent and verifiable carbon credits</li>
-          <li>Wide range of project types (renewable energy, reforestation, etc.)</li>
-          <li>Secure and easy-to-use marketplace</li>
-          <li>Real-time tracking of your carbon offset impact</li>
-          <li>Compliance with international carbon standards</li>
-        </ul>
-      </section>
+        <Conclusion>
+          Everything you see is exactly what matters—nothing else in your way.
+        </Conclusion>
 
-      <section className="text-center">
-        <Link href="/" className="bg-accent hover:bg-gold/90 text-accent-foreground font-medium py-2 px-6 rounded-md transition-colors">
+      </SectionContainer>
+
+
+
+      {/* SECTION 2 */}
+      <SectionContainer title="The Journey of a Carbon Credit">
+
+        <div className="grid md:grid-cols-3 gap-10 max-w-6xl mx-auto">
+
+          <SubCard delay={0.1}>
+            Behind every credit is a story—tracked from project to verification.
+          </SubCard>
+
+          <SubCard delay={0.2}>
+            Verified data becomes a secure, traceable digital asset on the blockchain.
+          </SubCard>
+
+          <SubCard delay={0.3}>
+            Anyone can explore it, buy it, or retire it in just a few clicks.
+          </SubCard>
+
+        </div>
+
+        <Conclusion>
+          What used to take weeks now happens in one smooth, transparent workflow.
+        </Conclusion>
+
+      </SectionContainer>
+
+
+
+      {/* SECTION 3 */}
+      <SectionContainer title="Clarity Over Complexity">
+
+        <div className="grid md:grid-cols-3 gap-10 max-w-6xl mx-auto">
+
+          <SubCard delay={0.1}>
+            Today’s markets are scattered and difficult to follow.
+          </SubCard>
+
+          <SubCard delay={0.2}>
+            We bring verification, tokenization, purchase, and retirement together.
+          </SubCard>
+
+          <SubCard delay={0.3}>
+            You see exactly where a credit came from—and the impact you create.
+          </SubCard>
+
+        </div>
+
+        <Conclusion>
+          Nothing hidden. Nothing confusing. Just clear, reliable climate action.
+        </Conclusion>
+
+      </SectionContainer>
+
+
+
+      {/* SECTION 4 */}
+      <SectionContainer title="Built for Everyone, Designed for You">
+
+        <div className="grid md:grid-cols-3 gap-10 max-w-6xl mx-auto">
+
+          <SubCard delay={0.1}>
+            Individuals can offset footprints easily and confidently.
+          </SubCard>
+
+          <SubCard delay={0.2}>
+            Companies get verified data, impact dashboards, and compliance reporting.
+          </SubCard>
+
+          <SubCard delay={0.3}>
+            Developers get streamlined onboarding, MRV uploads, and minting tools.
+          </SubCard>
+
+        </div>
+
+        <Conclusion>
+          Every path is guided—so you can focus on making an impact, not navigating complexity.
+        </Conclusion>
+
+      </SectionContainer>
+
+
+
+      {/* BACK */}
+      <div className="text-center py-20">
+        <Link
+          href="/"
+          className="px-8 py-3 bg-primary text-primary-foreground rounded-full hover:opacity-90 transition"
+        >
           Back to Home
         </Link>
-      </section>
+      </div>
+
     </div>
   );
 }
