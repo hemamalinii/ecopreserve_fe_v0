@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Quicksand:wght@300..700&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -121,44 +121,44 @@
   
   body {
     @apply bg-background text-foreground;
-    font-family: "Poiret One", sans-serif;
-    font-weight: 700;
-    font-feature-settings: 'cv11', 'ss01';
+    font-family: "Quicksand", sans-serif;
+    font-weight: 400;
+    font-optical-sizing: auto;
+    font-style: normal;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    letter-spacing: 0.04em;
   }
   
   h1, h2, h3, h4, h5, h6 {
-    font-weight: 700;
-    font-family: "Poiret One", sans-serif;
-    letter-spacing: 0.04em;
-  }
-
-  .poiret-one-regular {
-    font-family: "Poiret One", sans-serif;
+    font-family: "Libre Baskerville", serif;
     font-weight: 700;
     font-style: normal;
-    letter-spacing: 0.04em;
+  }
+
+  .quicksand-regular {
+    font-family: "Quicksand", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
   }
   
-  h1, h2, h3, h4, h5, h6 {
-    letter-spacing: 0.04em;
-    line-height: 1.2;
+  .libre-baskerville-regular {
+    font-family: "Libre Baskerville", serif;
+    font-weight: 400;
+    font-style: normal;
   }
-  
-  h1 {
-    font-size: 3.5rem;
-    font-weight: 800;
+
+  .libre-baskerville-bold {
+    font-family: "Libre Baskerville", serif;
+    font-weight: 700;
+    font-style: normal;
   }
-  
-  h2 {
-    font-size: 2.5rem;
-  }
-  
-  h3 {
-    font-size: 1.875rem;
+
+  .libre-baskerville-regular-italic {
+    font-family: "Libre Baskerville", serif;
+    font-weight: 400;
+    font-style: italic;
   }
   
   button {

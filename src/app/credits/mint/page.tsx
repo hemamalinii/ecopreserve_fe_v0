@@ -275,7 +275,7 @@ export default function MintCreditsPage() {
                     </div>
                     <div className="flex justify-between items-center pb-3 border-b">
                       <dt className="text-muted-foreground">Project ID:</dt>
-                      <dd className="font-mono text-sm">{formData.projectId}</dd>
+                      <dd className="text-sm">{formData.projectId}</dd>
                     </div>
                     {formData.description && (
                       <div className="pt-2">

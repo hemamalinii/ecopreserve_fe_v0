@@ -255,7 +255,7 @@ export default function WalletOnboardingPage() {
                   </Label>
                   <div className="flex items-center gap-3 p-4 bg-card rounded-lg border border-border">
                     <Wallet className="h-5 w-5 text-primary flex-shrink-0" />
-                    <span className="font-mono text-sm font-medium flex-1">
+                    <span className="text-sm font-medium flex-1">
                       {walletAddress}
                     </span>
                     <Check className="h-5 w-5 text-primary flex-shrink-0" />

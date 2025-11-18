@@ -113,7 +113,7 @@ export function RetirementModal({ isOpen, onClose, credit, onRetire }: Retiremen
                 <p className="font-medium">{credit.project}</p>
                 {credit.batchId && (
                   <p className="text-sm text-muted-foreground mt-1">
-                    Batch: <span className="font-mono">{credit.batchId}</span>
+                    Batch: <span>{credit.batchId}</span>
                   </p>
                 )}
                 <p className="text-sm text-muted-foreground mt-2">

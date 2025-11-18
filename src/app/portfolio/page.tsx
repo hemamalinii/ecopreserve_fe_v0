@@ -198,7 +198,7 @@ export default function PortfolioPage() {
                         <span>{holding.location}</span>
                       </div>
                       <span>•</span>
-                      <span className="font-mono">{holding.batchId}</span>
+                      <span>{holding.batchId}</span>
                       <span>•</span>
                       <span>Vintage {holding.vintage}</span>
                     </div>
@@ -265,7 +265,7 @@ export default function PortfolioPage() {
                         <span>{retirement.date}</span>
                       </div>
                       <span>•</span>
-                      <span className="font-mono">{retirement.certificateId}</span>
+                      <span>{retirement.certificateId}</span>
                     </div>
                   </div>
                 </div>

@@ -255,7 +255,7 @@ export default function ManageCreditsPage() {
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
                       <div>
                         <p className="text-muted-foreground mb-1">Token ID</p>
-                        <p className="font-mono font-semibold">{credit.tokenId}</p>
+                        <p className="font-semibold">{credit.tokenId}</p>
                       </div>
                       <div>
                         <p className="text-muted-foreground mb-1">Type</p>
@@ -453,7 +453,7 @@ export default function ManageCreditsPage() {
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <p className="text-sm text-muted-foreground mb-1">Token ID</p>
-                    <p className="font-mono font-semibold">{selectedCredit.tokenId}</p>
+                    <p className="font-semibold">{selectedCredit.tokenId}</p>
                   </div>
                   <div>
                     <p className="text-sm text-muted-foreground mb-1">Status</p>
@@ -473,7 +473,7 @@ export default function ManageCreditsPage() {
                   </div>
                   <div>
                     <p className="text-sm text-muted-foreground mb-1">Project ID</p>
-                    <p className="font-mono text-sm">{selectedCredit.projectId}</p>
+                    <p className="text-sm">{selectedCredit.projectId}</p>
                   </div>
                   <div>
                     <p className="text-sm text-muted-foreground mb-1">Minted Date</p>

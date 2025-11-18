@@ -199,7 +199,7 @@ export default function SellCreditsPage() {
                         <div className="grid grid-cols-3 gap-4 text-sm">
                           <div>
                             <p className="text-muted-foreground mb-1">Token ID</p>
-                            <p className="font-mono font-semibold">{credit.tokenId}</p>
+                            <p className="font-semibold">{credit.tokenId}</p>
                           </div>
                           <div>
                             <p className="text-muted-foreground mb-1">Type</p>
@@ -330,7 +330,7 @@ export default function SellCreditsPage() {
                     </div>
                     <div className="flex justify-between items-center pb-3 border-b">
                       <dt className="text-muted-foreground">Token ID:</dt>
-                      <dd className="font-mono text-sm">{selectedCredit.tokenId}</dd>
+                      <dd className="quicksand-regular text-sm">{selectedCredit.tokenId}</dd>
                     </div>
                     <div className="flex justify-between items-center pb-3 border-b">
                       <dt className="text-muted-foreground">Credit Type:</dt>

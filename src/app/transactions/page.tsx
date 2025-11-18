@@ -308,7 +308,7 @@ export default function TransactionsPage() {
                         href={`https://etherscan.io/tx/${tx.txHash}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-2 text-sm font-mono text-primary hover:text-gold/80 transition-colors"
+                        className="flex items-center gap-2 text-sm quicksand-regular text-primary hover:text-gold/80 transition-colors"
                       >
                         {tx.txHash.slice(0, 10)}...{tx.txHash.slice(-8)}
                         <ExternalLink className="h-4 w-4" />

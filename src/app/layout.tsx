@@ -19,7 +19,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="h-full" suppressHydrationWarning>
-      <body className="min-h-screen bg-background font-sans antialiased">
+      <body className="min-h-screen bg-background quicksand-regular antialiased">
         <AuthProvider>
           <div className="flex flex-col min-h-screen">
             <MainNav />
