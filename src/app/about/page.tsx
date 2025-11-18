@@ -158,31 +158,31 @@ export default function AboutPage() {
         ref={content1Ref}
         className="absolute inset-0 flex flex-col items-center justify-center text-white z-20 px-8"
       >
-        <h1 className="text-6xl md:text-8xl font-josefin text-center mb-16">
+        <h1 className="text-6xl md:text-8xl poiret-one-regular text-center mb-16">
           <span className="font-bold">A Simpler Way Forward</span>
         </h1>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl w-full mb-8">
           <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8 hover:bg-white/10 transition-all">
-            <p className="text-gray-200 text-xl leading-relaxed font-josefin font-semibold">
+            <p className="text-gray-200 text-xl leading-relaxed poiret-one-regular font-semibold">
               Climate action shouldn't feel <span className="font-bold text-blue-400">complicated</span>. We remove confusion and replace it with <span className="font-bold text-green-400">clarity</span>.
             </p>
           </div>
           
           <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8 hover:bg-white/10 transition-all">
-            <p className="text-gray-200 text-xl leading-relaxed font-josefin font-semibold">
+            <p className="text-gray-200 text-xl leading-relaxed poiret-one-regular font-semibold">
               <span className="font-bold text-blue-400">One clean interface</span>. <span className="font-bold text-green-400">One transparent system</span>. <span className="font-bold text-blue-400">One mission</span>.
             </p>
           </div>
           
           <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8 hover:bg-white/10 transition-all">
-            <p className="text-gray-200 text-xl leading-relaxed font-josefin font-semibold">
+            <p className="text-gray-200 text-xl leading-relaxed poiret-one-regular font-semibold">
               We make <span className="font-bold text-green-400">understanding, buying, and using carbon credits effortless</span> for everyone.
             </p>
           </div>
         </div>
         
-        <p className="text-gray-400 text-center text-xl max-w-3xl font-josefin font-bold">
+        <p className="text-gray-400 text-center text-xl max-w-3xl poiret-one-regular font-bold">
           Everything you see is exactly what matters—<span className="text-blue-400 font-bold">nothing else in your way</span>.
         </p>
       </div>
@@ -192,31 +192,31 @@ export default function AboutPage() {
         ref={content2Ref}
         className="absolute inset-0 flex flex-col items-center justify-center text-white z-30 px-8 opacity-0"
       >
-        <h1 className="text-6xl md:text-8xl font-josefin text-center mb-16">
+        <h1 className="text-6xl md:text-8xl poiret-one-regular text-center mb-16">
           <span className="font-bold">The Journey of a Carbon Credit</span>
         </h1>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl w-full mb-8">
           <div className="bg-black/60 backdrop-blur-md border border-white/20 rounded-3xl p-8 hover:bg-black/70 transition-all shadow-2xl">
-            <p className="text-gray-100 text-xl leading-relaxed font-josefin font-semibold">
+            <p className="text-gray-100 text-xl leading-relaxed poiret-one-regular font-semibold">
               Behind every credit is a <span className="font-bold text-green-400">story</span>—tracked from <span className="font-bold text-blue-400">project to verification</span>.
             </p>
           </div>
           
           <div className="bg-black/60 backdrop-blur-md border border-white/20 rounded-3xl p-8 hover:bg-black/70 transition-all shadow-2xl">
-            <p className="text-gray-100 text-xl leading-relaxed font-josefin font-semibold">
+            <p className="text-gray-100 text-xl leading-relaxed poiret-one-regular font-semibold">
               Verified data becomes a <span className="font-bold text-green-400">secure, traceable digital asset</span> on the blockchain.
             </p>
           </div>
           
           <div className="bg-black/60 backdrop-blur-md border border-white/20 rounded-3xl p-8 hover:bg-black/70 transition-all shadow-2xl">
-            <p className="text-gray-100 text-xl leading-relaxed font-josefin font-semibold">
+            <p className="text-gray-100 text-xl leading-relaxed poiret-one-regular font-semibold">
               Anyone can <span className="font-bold text-blue-400">explore it, buy it, or retire it</span> in just a few clicks.
             </p>
           </div>
         </div>
         
-        <p className="text-gray-300 text-center text-xl max-w-3xl font-josefin font-bold">
+        <p className="text-gray-300 text-center text-xl max-w-3xl poiret-one-regular font-bold">
           What used to take <span className="text-green-400 font-bold">weeks</span> now happens in <span className="text-blue-400 font-bold">one smooth, transparent workflow</span>.
         </p>
       </div>
@@ -226,31 +226,31 @@ export default function AboutPage() {
         ref={content3Ref}
         className="absolute inset-0 flex flex-col items-center justify-center text-white z-30 px-8 opacity-0"
       >
-        <h1 className="text-6xl md:text-8xl font-josefin text-center mb-16">
+        <h1 className="text-6xl md:text-8xl poiret-one-regular text-center mb-16">
           <span className="font-bold">Clarity Over Complexity</span>
         </h1>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl w-full mb-8">
           <div className="bg-black/60 backdrop-blur-md border border-white/20 rounded-3xl p-8 hover:bg-black/70 transition-all shadow-2xl">
-            <p className="text-gray-100 text-xl leading-relaxed font-josefin font-semibold">
+            <p className="text-gray-100 text-xl leading-relaxed poiret-one-regular font-semibold">
               Today's markets are <span className="font-bold text-blue-400">scattered and difficult to follow</span>.
             </p>
           </div>
           
           <div className="bg-black/60 backdrop-blur-md border border-white/20 rounded-3xl p-8 hover:bg-black/70 transition-all shadow-2xl">
-            <p className="text-gray-100 text-xl leading-relaxed font-josefin font-semibold">
+            <p className="text-gray-100 text-xl leading-relaxed poiret-one-regular font-semibold">
               We bring <span className="font-bold text-green-400">verification, tokenization, purchase, and retirement together</span>.
             </p>
           </div>
           
           <div className="bg-black/60 backdrop-blur-md border border-white/20 rounded-3xl p-8 hover:bg-black/70 transition-all shadow-2xl">
-            <p className="text-gray-100 text-xl leading-relaxed font-josefin font-semibold">
+            <p className="text-gray-100 text-xl leading-relaxed poiret-one-regular font-semibold">
               You see <span className="font-bold text-blue-400">exactly where a credit came from</span>—and the <span className="font-bold text-green-400">impact you create</span>.
             </p>
           </div>
         </div>
         
-        <p className="text-gray-300 text-center text-xl max-w-3xl font-josefin font-bold">
+        <p className="text-gray-300 text-center text-xl max-w-3xl poiret-one-regular font-bold">
           <span className="text-blue-400 font-bold">Nothing hidden</span>. <span className="text-blue-400 font-bold">Nothing confusing</span>. Just <span className="text-green-400 font-bold">clear, reliable climate action</span>.
         </p>
       </div>
@@ -293,37 +293,37 @@ export default function AboutPage() {
 
         {/* CONTENT 4: Built for Everyone, Designed for You */}
         <div ref={content4Ref} className="absolute inset-0 flex flex-col items-center justify-center text-white px-8 opacity-0">
-          <h1 className="text-6xl md:text-8xl font-josefin text-center mb-16">
+          <h1 className="text-6xl md:text-8xl poiret-one-regular text-center mb-16">
             <span className="font-bold">Built for Everyone, Designed for You</span>
           </h1>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl w-full mb-8">
             <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8 hover:bg-white/10 transition-all">
-              <p className="text-gray-200 text-xl leading-relaxed font-josefin font-semibold">
+              <p className="text-gray-200 text-xl leading-relaxed poiret-one-regular font-semibold">
                 Individuals can <span className="font-bold text-green-400">offset footprints easily and confidently</span>.
               </p>
             </div>
             
             <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8 hover:bg-white/10 transition-all">
-              <p className="text-gray-200 text-xl leading-relaxed font-josefin font-semibold">
+              <p className="text-gray-200 text-xl leading-relaxed poiret-one-regular font-semibold">
                 Companies get <span className="font-bold text-blue-400">verified data, impact dashboards, and compliance reporting</span>.
               </p>
             </div>
             
             <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8 hover:bg-white/10 transition-all">
-              <p className="text-gray-200 text-xl leading-relaxed font-josefin font-semibold">
+              <p className="text-gray-200 text-xl leading-relaxed poiret-one-regular font-semibold">
                 Developers get <span className="font-bold text-green-400">streamlined onboarding, MRV uploads, and minting tools</span>.
               </p>
             </div>
           </div>
           
-          <p className="text-gray-400 text-center text-xl max-w-3xl mb-10 font-josefin font-bold">
+          <p className="text-gray-400 text-center text-xl max-w-3xl mb-10 poiret-one-regular font-bold">
             Every path is <span className="text-blue-400 font-bold">guided</span>—so you can focus on <span className="text-green-400 font-bold">making an impact</span>, not navigating complexity.
           </p>
 
           <button
             onClick={() => window.location.href = '/auth/login'}
-            className="inline-block px-12 py-6 bg-blue-500 text-white font-josefin font-bold text-xl rounded-full hover:bg-blue-600 transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
+            className="inline-block px-12 py-6 bg-blue-500 text-white poiret-one-regular font-bold text-xl rounded-full hover:bg-blue-600 transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
           >
             Get Started
           </button>

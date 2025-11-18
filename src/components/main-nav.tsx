@@ -55,7 +55,7 @@ export function MainNav({ showHomeLink = true }: MainNavProps) {
         {/* Left side - Logo and Navigation */}
         <div className="flex items-center gap-8">
           <Link href="/" className="flex items-center space-x-2">
-            <span className="text-2xl font-bold text-primary shadows-into-light-regular">carbon<span className="text-gold font-extrabold text-2xl shadows-into-light-regular">ready</span>.<span className="text-accent font-extrabold text-2xl shadows-into-light-regular">earth</span></span>
+            <span className="text-2xl font-bold text-primary poiret-one-regular">carbon<span className="text-gold font-extrabold text-2xl poiret-one-regular">ready</span>.<span className="text-accent font-extrabold text-2xl poiret-one-regular">earth</span></span>
           </Link>
           
           <nav className="hidden items-center space-x-6 md:flex">
