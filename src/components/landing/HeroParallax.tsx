@@ -17,8 +17,8 @@ export default function HeroParallax() {
         className="absolute inset-0"
       >
         <Image
-          src="/img1.jpg"
-          alt="Earth at night"
+          src="/earth.jpeg"
+          alt="Earth from space"
           fill
           priority
           className="object-cover"

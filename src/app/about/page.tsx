@@ -5,6 +5,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Image from 'next/image';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -127,7 +128,12 @@ export default function AboutPage() {
     <div ref={containerRef} className="relative h-screen overflow-hidden bg-black">
 
       {/* EARTH (Fixed, doesn't move) */}
-      <div className="absolute inset-0">
+      <motion.div
+        initial={{ scale: 1.2, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 1.6, ease: "easeOut" }}
+        className="absolute inset-0"
+      >
         <Image
           src="/earth.jpeg"
           alt="Earth from space"
@@ -135,7 +141,7 @@ export default function AboutPage() {
           className="object-cover brightness-75"
           priority
         />
-      </div>
+      </motion.div>
 
       {/* BLACK CURVED OVERLAY (Rises from bottom) */}
       <div
