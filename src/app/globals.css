@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Quicksand:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -121,10 +122,9 @@
   
   body {
     @apply bg-background text-foreground;
-    font-family: "Quicksand", sans-serif;
-    font-weight: 400;
-    font-optical-sizing: auto;
+    font-family: "Poiret One", cursive;
     font-style: normal;
+    letter-spacing: 0.04em;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -136,11 +136,10 @@
     font-style: normal;
   }
 
-  .quicksand-regular {
-    font-family: "Quicksand", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 400;
+  .poiret-one-regular {
+    font-family: "Poiret One", cursive;
     font-style: normal;
+    letter-spacing: 0.04em;
   }
   
   .libre-baskerville-regular {

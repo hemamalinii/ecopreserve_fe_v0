@@ -330,7 +330,7 @@ export default function SellCreditsPage() {
                     </div>
                     <div className="flex justify-between items-center pb-3 border-b">
                       <dt className="text-muted-foreground">Token ID:</dt>
-                      <dd className="quicksand-regular text-sm">{selectedCredit.tokenId}</dd>
+                      <dd className="poiret-one-regular text-sm">{selectedCredit.tokenId}</dd>
                     </div>
                     <div className="flex justify-between items-center pb-3 border-b">
                       <dt className="text-muted-foreground">Credit Type:</dt>

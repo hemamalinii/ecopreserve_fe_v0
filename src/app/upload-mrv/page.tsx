@@ -76,7 +76,7 @@ export default function UploadMRVPage() {
               <div className="h-8 w-px bg-border" />
               <div className="flex items-center gap-2 text-sm">
                 <Wallet className="h-4 w-4 text-primary" />
-                <span className="quicksand-regular text-muted-foreground">0x742d...89Ab</span>
+                <span className="poiret-one-regular text-muted-foreground">0x742d...89Ab</span>
               </div>
             </div>
           </div>
@@ -178,7 +178,7 @@ export default function UploadMRVPage() {
                       </div>
                       <div className="flex items-center gap-2 mt-1">
                         <Hash className="h-3 w-3 text-muted-foreground" />
-                        <span className="text-xs quicksand-regular text-muted-foreground">{file.hash}</span>
+                        <span className="text-xs poiret-one-regular text-muted-foreground">{file.hash}</span>
                       </div>
                     </div>
                   </div>

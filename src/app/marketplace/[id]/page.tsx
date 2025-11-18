@@ -165,7 +165,7 @@ export default function ProjectDetailsPage({ params }: { params: { id: string } 
                   </div>
                   <div className="flex items-center justify-between py-2 border-b border-border">
                     <span className="text-muted-foreground">Token ID Range</span>
-                    <span className="font-semibold quicksand-regular">{project.tokenIdRange}</span>
+                    <span className="font-semibold poiret-one-regular">{project.tokenIdRange}</span>
                   </div>
                 </div>
               </Card>
