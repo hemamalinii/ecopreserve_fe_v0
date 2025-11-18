@@ -122,25 +122,29 @@
   body {
     @apply bg-background text-foreground;
     font-family: "Poiret One", sans-serif;
+    font-weight: 700;
     font-feature-settings: 'cv11', 'ss01';
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    letter-spacing: 0.04em;
   }
   
   h1, h2, h3, h4, h5, h6 {
-    font-weight: 400;
+    font-weight: 700;
     font-family: "Poiret One", sans-serif;
+    letter-spacing: 0.04em;
   }
 
   .poiret-one-regular {
     font-family: "Poiret One", sans-serif;
-    font-weight: 400;
+    font-weight: 700;
     font-style: normal;
+    letter-spacing: 0.04em;
   }
   
   h1, h2, h3, h4, h5, h6 {
-    letter-spacing: -0.025em;
+    letter-spacing: 0.04em;
     line-height: 1.2;
   }
   
